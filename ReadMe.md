@@ -19,7 +19,7 @@ My goal is to make a really nice flipper CFW, and to make it a pleasure for ever
 
 You should clone with 
 ```shell
-$ git clone --recursive https://github.com/DXVVAY/dexv0
+$ git clone --recursive https://github.com/DXVVAY/dexvmaster0
 ```
 
 # Read the Docs
