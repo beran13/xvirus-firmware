@@ -62,13 +62,13 @@ static void bad_usb_draw_callback(Canvas* canvas, void* _model) {
     if(model->state.state == BadUsbStateNotConnected) {
         canvas_draw_icon(canvas, 4, 26, &I_Clock_18x18);
         canvas_set_font(canvas, FontPrimary);
-        canvas_draw_str_aligned(canvas, 127, 31, AlignRight, AlignBottom, "Plug me");
-        canvas_draw_str_aligned(canvas, 127, 43, AlignRight, AlignBottom, "in, Daddy");
+        canvas_draw_str_aligned(canvas, 127, 31, AlignRight, AlignBottom, "Connect me");
+        canvas_draw_str_aligned(canvas, 127, 43, AlignRight, AlignBottom, "to computer");
     } else if(model->state.state == BadUsbStateWillRun) {
         canvas_draw_icon(canvas, 4, 26, &I_Clock_18x18);
         canvas_set_font(canvas, FontPrimary);
-        canvas_draw_str_aligned(canvas, 127, 31, AlignRight, AlignBottom, "Will cum");
-        canvas_draw_str_aligned(canvas, 127, 43, AlignRight, AlignBottom, "on connect");
+        canvas_draw_str_aligned(canvas, 127, 31, AlignRight, AlignBottom, "Will inject");
+        canvas_draw_str_aligned(canvas, 127, 43, AlignRight, AlignBottom, "on connection");
     } else if(model->state.state == BadUsbStateFileError) {
         canvas_draw_icon(canvas, 4, 26, &I_Error_18x18);
         canvas_set_font(canvas, FontPrimary);
