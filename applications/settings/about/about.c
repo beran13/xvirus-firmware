@@ -136,7 +136,7 @@ static DialogMessageButton fw_version_screen(DialogsApp* dialogs, DialogMessage*
     }
 
     dialog_message_set_header(message, "Firmware Info:", 0, 0, AlignLeft, AlignTop);
-    dialog_message_set_text(message, "XFW - Xtreme Firmware\nGithub.com/ClaraCrazy/Flipper-Xtreme", 0, 13, AlignLeft, AlignTop);
+    dialog_message_set_text(message, "D-Ware - https://github.com/DXVVAY/Dexvmaster0 - Made By Alphax + DEXV", 0, 13, AlignLeft, AlignTop);
     result = dialog_message_show(dialogs, message);
     dialog_message_set_text(message, NULL, 0, 0, AlignLeft, AlignTop);
     dialog_message_set_header(message, NULL, 0, 0, AlignLeft, AlignTop);
