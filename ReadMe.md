@@ -2,7 +2,7 @@
 
 [![Discord](https://img.shields.io/discord/975068703559409685?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/dexvirus)
 
-![Show me the code](https://media.discordapp.net/attachments/746304505879986267/1043574668940021760/image.png)
+![Show me the code](https://user-images.githubusercontent.com/89728480/209841676-33fb8152-d2ea-4039-a847-c03d1037fa3d.png)
 
 Welcome to [Dexv Zero](https://discord.gg/dexvirus)'s Firmware repo!
 My goal is to make a really nice flipper CFW, and to make it a pleasure for everyone to work with.
@@ -19,7 +19,7 @@ My goal is to make a really nice flipper CFW, and to make it a pleasure for ever
 
 You should clone with 
 ```shell
-$ git clone --recursive https://github.com/DXVVAY/dexv0
+$ git clone --recursive https://github.com/DXVVAY/dexvmaster0
 ```
 
 # Read the Docs
