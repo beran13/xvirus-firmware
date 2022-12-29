@@ -1,4 +1,4 @@
-# Dexv  Firmware
+# DEXV-Firmware
 
 [![Discord](https://img.shields.io/discord/975068703559409685?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/dexvirus)
 
@@ -9,35 +9,44 @@ My goal is to make a really nice flipper CFW, and to make it a pleasure for ever
 
 ## Change Log
 
++Made more SFW.
+
++Fixed Bugs.
+
 +Added ALL apps I could find for the Flipper.
 
 +Added dumps for NFC, RFID, Bad-Usb, Sub-Ghz and a bunch of music player dumps.
 
 +Added Dexv-themed graphics to everything.
 
-# Clone the Repository
+# Build It Yourself
 
 You should clone with 
 ```shell
 $ git clone --recursive https://github.com/DXVVAY/dexv0
 ```
+```shell
+$ cd dexv0
+```
+```shell
+$ ./fbt updater_package
+```
 
-# Read the Docs
+# Read The Docs
 
 Check out details on [how to build firmware](documentation/fbt.md), [write applications](documentation/AppsOnSDCard.md), [un-brick your device](documentation/KeyCombo.md) and more in the `documentation` folder made by the Flipper team. 
 
-
-## Install without compiling
+## Install Without Compiling
 
 1.Install the latest firmware release from [releases](https://github.com/DXVVAY/Dexvmaster0/releases).
 
-2.Go to qFlipper then connect your Flipper to your pc via USB cable and click on install from file, then choose the .tgz file.
+2.Go to qFlipper and connect your Flipper Zero to your PC via USB cable, then click on install from file, when prompted choose the .tgz file.
 
 ![image](https://user-images.githubusercontent.com/89728480/209699196-d8eedef0-6fe8-4c80-b151-b52847876466.png)
 
 Now just wait until it's done.
 
-The latest Firmware update will be uploaded in [releases](https://github.com/DXVVAY/Dexvmaster0/releases).
+# Flipper Zero Firmware Breakdown
 
 The Flipper Zero's firmware consists of two components:
 
@@ -45,19 +54,6 @@ The Flipper Zero's firmware consists of two components:
 - Core1 Firmware - HAL + OS + Drivers + Applications.
 
 They must both be flashed in the order described.
-
-## With offline update package
-
-With Flipper attached via USB:
-
-`./fbt flash_usb`
-
-Just building the package:
-
-`./fbt updater_package`
-
-
-
 
 # Links
 
@@ -168,4 +164,3 @@ Just building the package:
 - [WiFi Scanner v.0.4 (By SequoiaSan)](https://github.com/SequoiaSan/FlipperZero-WiFi-Scanner_Module-ESP8266) `Req: ESP8266 or ESP32`
 - [Wii EC Analyser (By csBlueChip)](https://github.com/csBlueChip/FlipperZero_WiiEC)
 - [Zero Tracker (By DrZZlo13)](https://github.com/DrZlo13/flipper-zero-music-tracker)
-
