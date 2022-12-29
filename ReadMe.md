@@ -67,6 +67,8 @@ They must both be flashed in the order described.
 
 * ä̶̫́l̶̛͝p̸͆̈h̶̿̃a̸̩̕x̷̋͂#4657
 
+* Vince#1145
+
 ## Games
 
 - [15 (By x27)](https://github.com/x27/flipperzero-game15)
