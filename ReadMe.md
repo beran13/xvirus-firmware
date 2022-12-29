@@ -21,13 +21,15 @@ My goal is to make a really nice flipper CFW, and to make it a pleasure for ever
 
 # Build It Yourself
 
-You should clone with 
+First clone the repository: 
 ```shell
 $ git clone --recursive https://github.com/DXVVAY/dexv0
 ```
+Then enter the directory:
 ```shell
 $ cd dexv0
 ```
+Finally build the package for the latest DEV build, be warned bugs may still be found:
 ```shell
 $ ./fbt updater_package
 ```
