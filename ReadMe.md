@@ -63,6 +63,12 @@ Just building the package:
 
 * Discord: [dexvirus/discord](https://discord.gg/dexvirus)
 
+# Contact
+
+* DEXV#6969
+
+* ä̶̫́l̶̛͝p̸͆̈h̶̿̃a̸̩̕x̷̋͂#4657
+
 ## Games
 
 - [15 (By x27)](https://github.com/x27/flipperzero-game15)
