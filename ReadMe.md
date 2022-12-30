@@ -73,7 +73,7 @@ They must both be flashed in the order described.
 
 * DEXV#6969
 
-* ä̶̫́l̶̛͝p̸͆̈h̶̿̃a̸̩̕x̷̋͂#4657
+* ⁀⊙෴☉⁀  Alphax  ⁀⊙෴☉⁀#4657
 
 * Vince#1145
 
