@@ -38,7 +38,7 @@ $ ./fbt updater_package
 
 Check out details on [how to build firmware](documentation/fbt.md), [write applications](documentation/AppsOnSDCard.md), [un-brick your device](documentation/KeyCombo.md) and more in the `documentation` folder made by the Flipper team. 
 
-## Install Without Compiling
+# Install Without Compiling
 
 1.Install the latest firmware release from [releases](https://github.com/DXVVAY/Dexvmaster0/releases).
 
@@ -46,7 +46,15 @@ Check out details on [how to build firmware](documentation/fbt.md), [write appli
 
 ![image](https://user-images.githubusercontent.com/89728480/209699196-d8eedef0-6fe8-4c80-b151-b52847876466.png)
 
-Now just wait until it's done.
+If this doesn't work then instead:
+
+1.Download the .zip file and extract it into the "updates" folder on your Flipper Zero.
+
+2.Inside your Flipper open the Browser (while on desktop press down then left) and find the updates folder.
+
+3.Open the folder with the name "Dexvmaster0" or something similar and find the file named "update" (it will have an icon of a box with an arrow inside).
+
+4.Select "Run In App"
 
 # Flipper Zero Firmware Breakdown
 
