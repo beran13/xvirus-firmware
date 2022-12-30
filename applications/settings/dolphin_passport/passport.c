@@ -46,10 +46,10 @@ static void render_callback(Canvas* canvas, void* ctx) {
         snprintf(mood_str, 20, "Mood: Extatic");
     } else if(stats->butthurt <= 9) {
         mood = 1;
-        snprintf(mood_str, 20, "Status: Chaotic");
+        snprintf(mood_str, 20, "Mood: Chaotic");
     } else {
         mood = 2;
-        snprintf(mood_str, 20, "Status: Fuming");
+        snprintf(mood_str, 20, "Mood: Fuming");
     }
 
     uint32_t xp_progress = 0;
