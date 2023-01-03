@@ -7,7 +7,7 @@
 Welcome to [Dexv Zero](https://discord.gg/dexvirus)'s Firmware repo!
 My goal is to make a really nice flipper CFW, and to make it a pleasure for everyone to work with.
 
-<h2 align="center">Change log:</h2>
+<h2 align="center">Change log 1.5:</h2>
 
 ```txt
 Added
