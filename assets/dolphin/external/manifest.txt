@@ -92,72 +92,16 @@ Min level: 1
 Max level: 30
 Weight: 4
 
-Name: L1_BOTTY_CALL_128x64
+Name: dexv_hand_128x64
 Min butthurt: 0
 Max butthurt: 14
 Min level: 1
 Max level: 30
-Weight: 8
+Weight: 4
 
-Name: L1_DEDSEC2_128x64
+Name: dexv_dedsec_128x64
 Min butthurt: 0
 Max butthurt: 14
 Min level: 1
 Max level: 30
-Weight: 9
-
-Name: L1_ERROR_INV_128x64
-Min butthurt: 0
-Max butthurt: 14
-Min level: 1
-Max level: 30
-Weight: 8
-
-Name: L1_HACKERMAN_128x64
-Min butthurt: 0
-Max butthurt: 14
-Min level: 1
-Max level: 30
-Weight: 8
-
-Name: L1_JILL_HOME_128x64
-Min butthurt: 0
-Max butthurt: 14
-Min level: 1
-Max level: 30
-Weight: 8
-
-Name: L1_JOINUS_SR_128x64
-Min butthurt: 0
-Max butthurt: 14
-Min level: 1
-Max level: 30
-Weight: 8
-
-Name: L1_PIPBOY_SHOVEL_128x64
-Min butthurt: 0
-Max butthurt: 14
-Min level: 1
-Max level: 30
-Weight: 8
-
-Name: L1_SPACEINVADERS_128x64
-Min butthurt: 0
-Max butthurt: 14
-Min level: 1
-Max level: 30
-Weight: 8
-
-Name: L1_SPIRAL_128x64
-Min butthurt: 0
-Max butthurt: 14
-Min level: 1
-Max level: 30
-Weight: 10
-
-Name: L1_WATCHDOGS_128x64
-Min butthurt: 0
-Max butthurt: 14
-Min level: 1
-Max level: 30
-Weight: 14
+Weight: 4

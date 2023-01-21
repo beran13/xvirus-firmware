@@ -16,7 +16,7 @@ Bubble slots: 1
 Slot: 0
 X: 22
 Y: 25
-Text: I am\nCanaidianSike,
+Text: Mess with\nthe dex,
 AlignH: Right
 AlignV: Center
 StartFrame: 4
@@ -25,7 +25,7 @@ EndFrame: 7
 Slot: 0
 X: 31
 Y: 25
-Text: And like\nWindows 11.
+Text: die like\nthe rest.
 AlignH: Right
 AlignV: Center
 StartFrame: 8
