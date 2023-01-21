@@ -7,17 +7,54 @@
 Welcome to [Dexv Zero](https://discord.gg/dexvirus)'s Firmware repo!
 My goal is to make a really nice flipper CFW, and to make it a pleasure for everyone to work with.
 
-## Change Log
+<h2 align="center">Change log 1.5:</h2>
 
-+Made more SFW.
+```txt
+Added
 
-+Fixed Bugs.
+- Jamming Files
+- Custom subghz presets
+- Subghz and IR signal replication via gpio | Credits to @ankris812, exact commit lost to time as of rn
+- Honda Keys (CVE-2022-27254)
+- New API Routes for Locale settings
+- Scrolling view for long file names in browser
+- Tamagotchi rom
+```
+```txt
+Updated
 
-+Added ALL apps I could find for the Flipper.
+- All graphics
+- Folder handling for empty ones (Now indicate they are empty)
+- Applications now use the new Locale setting
+- Compiler now handles all non-compiled faps during build
+- Compiler now accepts WIP SDK 
+- Compiler just stfu about non-fatal problems
+- Some further NFC stuff
+- Weather App
+- Applications now use above mentioned API Routes
+```
+```txt
+Fixed
 
-+Added dumps for NFC, RFID, Bad-Usb, Sub-Ghz and a bunch of music player dumps.
+- Passport crash on high level
+- Dummy_mode getting you XP
+- Leveling system
+- Mood system
+```
+```txt
+REMOVED
 
-+Added Dexv-themed graphics to everything.
+- Broken apps (bad apple, chess, etc.)
+- Unused code from FAPs and system calls
+```
+
+----
+<br>
+<h2 align="center">Known Bugs:</h2>
+
+```txt
+- Name Changer app crashes when you close it without using it
+```
 
 # Build It Yourself
 
@@ -38,7 +75,7 @@ $ ./fbt updater_package
 
 Check out details on [how to build firmware](documentation/fbt.md), [write applications](documentation/AppsOnSDCard.md), [un-brick your device](documentation/KeyCombo.md) and more in the `documentation` folder made by the Flipper team. 
 
-## Install Without Compiling
+# Install Without Compiling
 
 1.Install the latest firmware release from [releases](https://github.com/DXVVAY/Dexvmaster0/releases).
 
@@ -46,7 +83,15 @@ Check out details on [how to build firmware](documentation/fbt.md), [write appli
 
 ![image](https://user-images.githubusercontent.com/89728480/209699196-d8eedef0-6fe8-4c80-b151-b52847876466.png)
 
-Now just wait until it's done.
+If this doesn't work then instead:
+
+1.Download the .zip file and extract it into the "updates" folder on your Flipper Zero.
+
+2.Inside your Flipper open the Browser (while on desktop press down then left) and find the updates folder.
+
+3.Open the folder with the name "Dexvmaster0" or something similar and find the file named "update" (it will have an icon of a box with an arrow inside).
+
+4.Select "Run In App"
 
 # Flipper Zero Firmware Breakdown
 
@@ -65,7 +110,7 @@ They must both be flashed in the order described.
 
 * DEXV#6969
 
-* ä̶̫́l̶̛͝p̸͆̈h̶̿̃a̸̩̕x̷̋͂#4657
+* ⁀⊙෴☉⁀  Alphax  ⁀⊙෴☉⁀#4657
 
 * Vince#1145
 
