@@ -47,7 +47,7 @@ static void bad_usb_draw_callback(Canvas* canvas, void* _model) {
 
     if((model->state.state == BadUsbStateIdle) || (model->state.state == BadUsbStateDone) ||
        (model->state.state == BadUsbStateNotConnected)) {
-        elements_button_center(canvas, "Inject");
+        elements_button_center(canvas, "Execute");
     } else if((model->state.state == BadUsbStateRunning) || (model->state.state == BadUsbStateDelay)) {
         elements_button_center(canvas, "Stop");
     } else if(model->state.state == BadUsbStateWillRun) {
@@ -62,12 +62,12 @@ static void bad_usb_draw_callback(Canvas* canvas, void* _model) {
     if(model->state.state == BadUsbStateNotConnected) {
         canvas_draw_icon(canvas, 4, 26, &I_Clock_18x18);
         canvas_set_font(canvas, FontPrimary);
-        canvas_draw_str_aligned(canvas, 127, 31, AlignRight, AlignBottom, "Time for,");
-        canvas_draw_str_aligned(canvas, 127, 43, AlignRight, AlignBottom, "Alphax");
+        canvas_draw_str_aligned(canvas, 127, 31, AlignRight, AlignBottom, "Resistance");
+        canvas_draw_str_aligned(canvas, 127, 43, AlignRight, AlignBottom, "Is Futile");
     } else if(model->state.state == BadUsbStateWillRun) {
         canvas_draw_icon(canvas, 4, 26, &I_Clock_18x18);
         canvas_set_font(canvas, FontPrimary);
-        canvas_draw_str_aligned(canvas, 127, 31, AlignRight, AlignBottom, "Inject on");
+        canvas_draw_str_aligned(canvas, 127, 31, AlignRight, AlignBottom, "Execute on");
         canvas_draw_str_aligned(canvas, 127, 43, AlignRight, AlignBottom, "Connection");
     } else if(model->state.state == BadUsbStateFileError) {
         canvas_draw_icon(canvas, 4, 26, &I_Error_18x18);
