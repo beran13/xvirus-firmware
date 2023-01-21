@@ -11,7 +11,7 @@ My goal is to make a really nice flipper CFW, and to make it a pleasure for ever
 
 ```txt
 Added
-
+- Some animations from Wrench's repo https://github.com/wrenchathome/flip0anims/
 - Jamming Files
 - Custom subghz presets
 - Subghz and IR signal replication via gpio | Credits to @ankris812, exact commit lost to time as of rn
