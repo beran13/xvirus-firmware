@@ -1,211 +1,217 @@
-<h1 align="center">XFW - <code>Xtreme Firmware</code> for the Flipper Zero</h1>
+# DEXV-Firmware
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/55334727/215170306-051eeb8f-8f72-437f-8c2d-0e4be009bdad.png">
-</p>
+[![Discord](https://img.shields.io/discord/975068703559409685?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/dexvirus)
 
-[Intro](https://github.com/ClaraCrazy/Flipper-Xtreme#What-makes-it-special) | [Animations](https://github.com/ClaraCrazy/Flipper-Xtreme#Animations--Asset-Packs) | [Docs](https://github.com/ClaraCrazy/Flipper-Xtreme/wiki) | [Changelog](https://github.com/ClaraCrazy/Flipper-Xtreme#list-of-changes) | [Known bugs](https://github.com/ClaraCrazy/Flipper-Xtreme/issues?q=is%3Aissue+is%3Aopen+label%3Arelease-pending) | [Install](https://github.com/ClaraCrazy/Flipper-Xtreme#Install) | [Build](https://github.com/ClaraCrazy/Flipper-Xtreme#build-it-yourself) | [Discord](https://discord.gg/flipper-xtreme)
------
+![Show me the code](https://user-images.githubusercontent.com/89728480/209841676-33fb8152-d2ea-4039-a847-c03d1037fa3d.png)
 
-This firmware is a complete overhaul of the [Official Firmware](https://github.com/flipperdevices/flipperzero-firmware), it also features lots of awesome code-bits from [Unleashed](https://github.com/DarkFlippers/unleashed-firmware).
+Welcome to [Dexv Zero](https://discord.gg/dexvirus)'s Firmware repo!
+My goal is to make a really nice flipper CFW, and to make it a pleasure for everyone to work with.
 
------
-<br>
-<h2 align="center">What makes it special?</h2>
-
-We have spent many hours perfecting this code even further, and getting the most out of it.
-
-The goal of this Firmware is to regularly bring out amazing updates based on what the community wants, with an actual understanding of whats going on. Fixing bugs that are regularly talked about, removing unstable / broken applications (.FAP) and actually using the level system that just sits abandoned everywhere else.
-<br><br>
-- The focus of this firmware is functionality & stability: If an App doesnt work, its gone
-
-- Asset Packs: Are you tired of having to remake your custom animations after every update, switching manifests and having a hard time sharing them, especially once you modify scanning assets too? Those times are over. Scroll down to learn more
-
-- Giving the level system a purpose: Right now, each level unlocks a new wallpaper. More on that below
-
-- Clean upgraded code: Some people wrote updates to certain files. These are... painful, to say the least. Here its all built with perfection in mind and integrated in a mostly clean way. I invite you all to compare the code with theirs.
-
-- Up2Date: This firmware receives updates from a few repositories, not just from its Upstream. If there are functional, but yet un-merged Pull requests on another flipper firmware that are good, they will be in here!
-
-
------
-<br>
-<h2 align="center">Xtreme Settings:</h2>
-
-
-We wrote a powerful yet easy-to-use application specifically for our Firmware, that gives you easy-access to all the fancy things we implemented:
-
-<img src="https://user-images.githubusercontent.com/55334727/215137728-529274e8-ab95-4164-a2a0-9ff712c9d3c7.gif" align="left" width="400px"/>
-
-<code>Base Graphics:</code> Change the fallback assets used. Its either SFW (default) or NSFW
-<br><code>Asset Pack:</code> Allows you to easily customize your firmware, more on that below 
-<br><code>Anim Speed:</code> Speed in which the animations play
-<br><code>Cycle Anims:</code> Duration of how long animations are played before switching to next
-<br><code>Unlock Anims:</code> Custom setting just for NSFW fallback animations. Figure it out ;)
-<br><code>Battery Icon:</code> Classic Firmware battery style toggle, just at a more convenient place
-<br><code>XP Level:</code> Changes your Flippers level
-<br><code>SubGhz Extend:</code> Allows you to extend the subghz range beyond what FZ devs planned
-<br><code>SubGhz Bypass:</code> Allows you to bypass the subghz region locks of the Flipper
-
-<br clear="left"/>
-
------
-<br>
-<h2 align="center">Animations / Asset Packs:</h2>
-
-We created our own, new & improved Animation / Asset system, that we can finally reveal. It lets you to create and cycle through your own `Asset Packs` with only a few button presses, allowing you to easily load custom Animations and Icons like never before.
-
-<img src="https://user-images.githubusercontent.com/55334727/214010675-9eddb8f5-1dd6-4cf4-a0ee-e37af8b6c933.PNG" align="left" width="200px"/>
-You can easily create your own pack, or find some user made ones in the discord channel. Check <a href="https://github.com/ClaraCrazy/Flipper-Xtreme/wiki/1.-File-Formats">here</a> for a tutorial on creating your own. Essentially, we got our own <code>Anims</code> & <code>Icons</code> folders, inside each <code>Asset Pack</code>.
-
-<br clear="left"/>
-
-<br>
-
-<img src="https://user-images.githubusercontent.com/55334727/214016338-95a619c7-88d2-4db5-bb7a-75282d9082b8.png" align="left" width="200px"/>
-Once you have some packs, upload them to your Flipper in <code>SD/dolphin_custom</code> (if you did this right you should see <code>SD/dolphin_custom/PackName/Anims</code> and/or <code>SD/dolphin_custom/PackName/Icons</code>).
-
-
-<br clear="left"/>
-
-<br>
-
-<img src="https://user-images.githubusercontent.com/55334727/214013624-25dad48e-72ea-4a90-9060-66e137e0d61a.png" align="left" width="200px"/>
-After installing the packs to Flipper, hit the <code>Arrow UP</code> button on the main menu and go to <code>Xtreme Settings</code>. Here choose which pack you want and tweak the other settings how you prefer, then press back to reboot and enjoy your new assets & animations!
-
-<br clear="left"/>
-
------
-<br>
-<h2 align="center">Levels:</h2>
-
-This Firmware has 30 levels, not just the basic 3 the official one has.
-
-With this new system in place, it allows for some cool stuff like locking animations behind a certain level. This can be done fairly easy: The idle_animations are tied to the level system. Specifically, the `Min level` variable of your manifest file is used here. Each level you reach, unlocks a new animation. The higher your level, the more animations people can see.
-
-<details>
-<summary>Our example</summary>
-
-In our case, this is used with the NSFW animations. Dont worry, these are disabled by default because I know not everyone likes to see my / anime tits and thats fine. Anyways.. each level gives a brand new background animation, they also become more and more lewd over time. (Funfact for those reading.. thats why the repository has this warning. Github doesnt like my tits :c)
-
-| Level  | Animations |
-| ------------- | ------------- |
-| 1-10  | Try harder. Just sexy clothes |
-| 11-20 | Some tits, maybe an ass |
-| 21-30 | Fully NSFW, graphic scenes |
-
-</details>
-
------
-<br>
-<h2 align="center">List of changes:</h2>
-
-Note: This repo is always updated with OFW & Unleashed. No need to mention all those here. We will only mention **our** changes that we can actually be credited for.
+<h2 align="center">Change log 1.5:</h2>
 
 ```txt
-[Added]
-
-- Xtreme App
-- Asset Packs
-- More UI options
-- A new battery display-type
-- Scrolling view for long file names in browser
-- NSFW Animations tied to the level system. Read more above
-- Folder handling for empty ones (Now indicate they are empty)
-
+Added
+- Some animations from Wrench's repo https://github.com/wrenchathome/flip0anims/
+- Jamming Files
 - Custom subghz presets
-- Multiple NFC protocols
-- Multiple Sub-Ghz protocols | Merged from Unleashed, thanks @xMasterX
-- Subghz and IR signal replication via gpio | Credits to @ankris812
-- Honda Keys (CVE-2022-27254) & Ford blockers
-
+- Subghz and IR signal replication via gpio | Credits to @ankris812, exact commit lost to time as of rn
+- Honda Keys (CVE-2022-27254)
 - New API Routes for Locale settings
+- Scrolling view for long file names in browser
+- Tamagotchi rom
 ```
 ```txt
-[Updated]
+Updated
 
-- All Assets
-
-- Tons of apps
-- File browser
-- Massive compiler re-do
-- About 1k files to speed things up a lot
-- Applications to now use the new Locale setting
+- All graphics
+- Folder handling for empty ones (Now indicate they are empty)
+- Applications now use the new Locale setting
+- Compiler now handles all non-compiled faps during build
+- Compiler now accepts WIP SDK 
+- Compiler just stfu about non-fatal problems
+- Some further NFC stuff
+- Weather App
+- Applications now use above mentioned API Routes
 ```
 ```txt
-[Fixed]
+Fixed
 
 - Passport crash on high level
-- SFW / Dummy_mode getting you XP
+- Dummy_mode getting you XP
 - Leveling system
 - Mood system
 ```
 ```txt
-[REMOVED]
+REMOVED
 
-- Unused Dummy Mode
 - Broken apps (bad apple, chess, etc.)
-- Tons of unused code from FAPs and system calls
+- Unused code from FAPs and system calls
 ```
 
 ----
 <br>
-<h2 align="center">Install:</h2>
+<h2 align="center">Known Bugs:</h2>
 
-**This is the recommended install procedure. Please follow these steps EXACTLY and CAREFULLY to ensure you install correctly.**
-**This process will NOT delete any saved files and simply ensures the install goes smoothly.**
-<br><br>
+```txt
+- Name Changer app crashes when you close it without using it
+```
 
-- Download the latest release (`.tgz`) from [the release page](https://github.com/ClaraCrazy/Flipper-Xtreme/releases/latest)
-- Open [qFlipper](https://flipperzero.one/update) and connect your Flipper Zero
-- Go to the files tab, into SD Card, and DELETE THE `apps` AND `update` FOLDERS
-- Go back to the device tab
-- Click `Install from file...` and select the downloaded file (`.tgz`)
+# Build It Yourself
 
-- Enjoy!
-
-**If you have issues or crashes with that process, you can try to use `Settings > Storage > Factory Reset` then retry the install.**
-**Doing that will NOT remove your saved files, it will only forget some settings and paired devices.**
-
-----
-<br>
-<h2 align="center">Build it yourself:</h2>
-
-```bash
-To download the needed tools:
-$ git clone --recursive https://github.com/ClaraCrazy/Flipper-Xtreme.git
-$ cd Flipper-Xtreme/
-
-To flash directly to the Flipper (Needs to be connected via USB, qFlipper closed)
-$ ./fbt flash_usb
-
-To just compile firmware
+First clone the repository: 
+```shell
+git clone --recursive https://github.com/DXVVAY/dexvmaster0
+```
+Then enter the directory:
+```shell
+cd dexvmaster0
+```
+Finally build the package for the latest DEV build, be warned bugs may still be found:
+```shell
 $ ./fbt updater_package
-
-If building FAPS:
-$ ./fbt fap_dist
-
-If building image assets:
-$ ./fbt resources icons dolphin_ext
 ```
 
-----
-<h2 align="center">Stargazers over time</h2>
+# Read The Docs
 
-[![Stargazers over time](https://starchart.cc/ClaraCrazy/Flipper-Xtreme.svg)](https://starchart.cc/ClaraCrazy/Flipper-Xtreme)
+Check out details on [how to build firmware](documentation/fbt.md), [write applications](documentation/AppsOnSDCard.md), [un-brick your device](documentation/KeyCombo.md) and more in the `documentation` folder made by the Flipper team. 
 
-----
-<h2 align="center">Contributors</h2>
+# Install Without Compiling
 
-[![Contributors](https://user-images.githubusercontent.com/55334727/212134625-21383102-02f3-453f-b1d7-8a9c65b27612.svg)](https://github.com/ClaraCrazy/Flipper-Xtreme/graphs/contributors)
+1.Install the latest firmware release from [releases](https://github.com/DXVVAY/Dexvmaster0/releases).
 
+2.Go to qFlipper and connect your Flipper Zero to your PC via USB cable, then click on install from file, when prompted choose the .tgz file.
 
-----
-## SAST Tools
+![image](https://user-images.githubusercontent.com/89728480/209699196-d8eedef0-6fe8-4c80-b151-b52847876466.png)
 
-This helps us a lot, thanks for the free license for this project!
+If this doesn't work then instead:
 
-[PVS-Studio](https://pvs-studio.com/en/pvs-studio/?utm_source=github&utm_medium=organic&utm_campaign=open_source) - static analyzer for C, C++, C#, and Java code.
+1.Download the .zip file and extract it into the "updates" folder on your Flipper Zero.
 
-----
-<p align="center"> "What we do for ourselves dies with us. What we do for others and the world remains and is immortal.” ― Albert Pine </p>
+2.Inside your Flipper open the Browser (while on desktop press down then left) and find the updates folder.
+
+3.Open the folder with the name "Dexvmaster0" or something similar and find the file named "update" (it will have an icon of a box with an arrow inside).
+
+4.Select "Run In App"
+
+# Flipper Zero Firmware Breakdown
+
+The Flipper Zero's firmware consists of two components:
+
+- Core2 firmware set - proprietary components by ST: FUS + radio stack. FUS is flashed at factory, and you should never update it.
+- Core1 Firmware - HAL + OS + Drivers + Applications.
+
+They must both be flashed in the order described.
+
+# Links
+
+* Discord: [dexvirus/discord](https://discord.gg/dexvirus)
+
+# Contact
+
+* DEXV#6969
+
+* ⁀⊙෴☉⁀  Alphax  ⁀⊙෴☉⁀#4657
+
+* Vince#1145
+
+## Games
+
+- [15 (By x27)](https://github.com/x27/flipperzero-game15)
+- [2048 (By OlegSchwann)](https://github.com/OlegSchwann/flipperzero-firmware/tree/hackaton/game_2048/applications/game-2048) [(Score By DevMilanIan)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/186)
+- [2048 (By eugene-kirzhanov)](https://github.com/eugene-kirzhanov/flipper-zero-2048-game) (Titled 2048 (Improved))
+- [Arkanoid (By gotnull)](https://github.com/gotnull/flipperzero-firmware-wPlugins) [(Score By DevMilanIan)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/188)
+- [BlackJack (By teeebor)](https://github.com/teeebor/flipper_games)
+- [Chess (By Okalachev)](https://github.com/okalachev/flipperzero-firmware/tree/chess) Crashes 1st load if FW <~750KB or every load on larger FW  `Broken Unfortunately`
+- [Dice Roller Including SEX/WAR/8BALL/WEED DICE (By RogueMaster)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/blob/420/applications/dice/dice.c)
+- [Dice (By Ka3u6y6a)](https://github.com/Ka3u6y6a/flipper-zero-dice)
+- [Doom (By p4nic4ttack)](https://github.com/p4nic4ttack/doom-flipper-zero/)
+- [Flappy Bird (By DroomOne)](https://github.com/DroomOne/flipperzero-firmware/tree/dev/applications/flappy_bird) [Flappy: Border hitboxes, bigger Pilars (By TQMatvey)](https://github.com/DarkFlippers/unleashed-firmware/pull/114) [Increase pilars line width to improve visibility (By ahumeniy)](https://github.com/DarkFlippers/unleashed-firmware/pull/140)
+- [Game of Life (Updated to work by tgxn) (By itsyourbedtime)](https://github.com/tgxn/flipperzero-firmware/blob/dev/applications/game_of_life/game_of_life.c)
+- [Heap Defence (By xMasterX)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/commit/fc776446de9fdd553b221c02668b925b689378d8) [(original by wquinoa & Vedmein)](https://github.com/Vedmein/flipperzero-firmware/tree/hd/svisto-perdelki)
+- [Mandelbrot Set (By Possibly-Matt)](https://github.com/Possibly-Matt/flipperzero-firmware-wPlugins)
+- [Minesweeper (By panki27)](https://github.com/panki27/minesweeper)
+- [Monty Hall (By DevMilanIan)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/203)
+- [Scorched Tanks (By jasniec)](https://github.com/jasniec/flipper-scorched-tanks-game)
+- [Snake (By OlegSchwann)-OFW](https://github.com/flipperdevices/flipperzero-firmware/pull/829)(With updates from DrZlo13, xMasterX, QtRoS and RogueMaster) [Snake Score Saving (By JuanJakobo)](https://github.com/flipperdevices/flipperzero-firmware/pull/1922) [Turns anywhere (By TQMatvey)](https://github.com/DarkFlippers/unleashed-firmware/pull/125) [Food Spawns Anywwhere (By TQMatvey)](https://github.com/DarkFlippers/unleashed-firmware/pull/130)
+- [Solitaire (By teeebor)](https://github.com/teeebor/flipper_games)
+- [T-Rex (By gelin)](https://github.com/gelin/t-rex-runner) WIP
+- [TAMA P1 (By GMMan)](https://github.com/GMMan/flipperzero-firmware/tree/tama-p1) requires [this rom](https://tinyurl.com/tamap1) IN `tama_p1` on SD as `rom.bin` to make it work.
+- [Tanks (By Alexgr13)](https://github.com/alexgr13/flipperzero-firmware/tree/fork/dev/applications/tanks-game)
+- [Tetris (By jeffplang)](https://github.com/jeffplang/flipperzero-firmware/tree/tetris_game/applications/tetris_game)
+- [Tic Tac Toe (By gotnull)](https://github.com/gotnull/flipperzero-firmware-wPlugins)
+- [Video Poker (By PixlEmly)](https://github.com/PixlEmly/flipperzero-firmware-testing/blob/420/applications/VideoPoker/poker.c)
+- [Yatzee (By emfleak)](https://github.com/emfleak/flipperzero-yatzee)
+- [Zombiez (Reworked By DevMilanIan)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/240) [(Original By Dooskington)](https://github.com/Dooskington/flipperzero-zombiez)
+
+## Plugins
+
+- [Air Mouse (By ginkage)](https://github.com/ginkage/FlippAirMouse/)
+- [Authenticator/TOTP (By akopachov)](https://github.com/akopachov/flipper-zero_authenticator)
+- [Bad Apple (By GMMan)](https://github.com/GMMan/flipperzero-badapple) `No working video.bin found`
+- [Barcode Generator (By McAzzaMan)](https://github.com/McAzzaMan/flipperzero-firmware/tree/UPC-A_Barcode_Generator/applications/barcode_generator)
+- [Bluetooth Remote (By Cutch)-OFW](https://github.com/flipperdevices/flipperzero-firmware/pull/1330)
+- [BPM Tapper (By panki27)](https://github.com/panki27/bpm-tapper)
+- [Calculator (By n-o-T-I-n-s-a-n-e)](https://github.com/n-o-T-I-n-s-a-n-e)
+- [Ceasar Cipher (By panki27)](https://github.com/panki27/caesar-cipher)
+- [Clock (By kowalski7cc)](https://github.com/kowalski7cc/flipperzero-firmware/tree/clock-v1)
+- [Clock/Stopwatch (By CompaqDisc, Stopwatch & Sound Alert By RogueMaster)](https://gist.github.com/CompaqDisc/4e329c501bd03c1e801849b81f48ea61) [12/24HR (By non-bin)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/254) [Refactoring (By GMMan)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/256)
+- [Count Down Timer (By 0w0mewo)](https://github.com/0w0mewo/fpz_cntdown_timer)
+- [Counter (By Krulknul)](https://github.com/Krulknul/dolphin-counter)
+- [DAP Link (By DrZlo13)-OFW](https://github.com/flipperdevices/flipperzero-firmware/pull/1897)
+- [Deauther PWNDTOOLS V2.6.0 (By HEX0DAYS)](https://github.com/HEX0DAYS/FlipperZero-PWNDTOOLS) `Req: ESP8266` [Original](https://github.com/SpacehuhnTech/esp8266_deauther)
+- [Distance Sensor (By Sanqui)](https://github.com/Sanqui/flipperzero-firmware/tree/hc_sr04)) `Req: HC-SR04` Ported/Modified by xMasterX
+- [Dolphin Backup (By nminaylov)-OFW](https://github.com/flipperdevices/flipperzero-firmware/pull/1384) Modified by RogueMaster
+- [Dolphin Restorer (By nminaylov)](https://github.com/flipperdevices/flipperzero-firmware/pull/1384) Cloned by RogueMaster
+- [DSTIKE Deauther (By SequoiaSan)](https://github.com/SequoiaSan/FlipperZero-Wifi-ESP8266-Deauther-Module/tree/FlipperZero-Module-v2/FlipperZeroModule/FlipperZero-ESP8266-Deauth-App) `Req: ESP8266`
+- [DTMF Dolphin (By litui)](https://github.com/litui/dtmf_dolphin)
+- [Flashlight (By xMasterX)](https://github.com/xMasterX/flipper-flashlight)
+- [GPIO Reader (biotinker) (By biotinker)](https://github.com/biotinker/flipperzero-gpioreader)
+- [GPIO Reader (Aurelilc) (By aureli1c)](https://github.com/aureli1c/flipperzero_GPIO_read)
+- [GPS (By ezod)](https://github.com/ezod/flipperzero-gps) `Req: NMEA 0183`
+- [HEX Viewer (By QtRoS)](https://github.com/QtRoS/flipperzero-firmware)
+- [i2c Tools (By NaejEL)](https://github.com/NaejEL/flipperzero-i2ctools)
+- [iButton Fuzzer (By xMasterX)](https://github.com/DarkFlippers/unleashed-firmware)
+- [Intravelometer (By theageoflove)](https://github.com/theageoflove/flipperzero-zeitraffer)
+- [Lightmeter (By oleksiikutuzov)](https://github.com/oleksiikutuzov/flipperzero-lightmeter) `Req: BH1750`
+- [IFTTT Virtual Button (By Ferrazzi)](https://github.com/Ferrazzi/FlipperZero_IFTTT_Virtual_Button) `Req: ESP8266 w/ IFTTT FW Flashed`
+- [Metronome (By panki27)](https://github.com/panki27/Metronome)
+- [Morse Code (By wh00hw)](https://github.com/DarkFlippers/unleashed-firmware/pull/144)
+- [Mouse Jacker (By mothball187)](https://github.com/mothball187/flipperzero-nrf24/tree/main/mousejacker) ([Pin Out](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/tree/420/applications/mousejacker) from nocomp/Frog/UberGuidoZ) `Req: NRF24`
+- [Mouse Jiggler (By Jacob-Tate)](https://github.com/Jacob-Tate/flipperzero-firmware/blob/dev/applications/mouse_jiggler/mouse_jiggler.c) (Original By MuddleBox)
+- [Multi Converter (By theisolinearchip)](https://github.com/theisolinearchip)
+- [Music Beeper (By DrZlo13)](https://github.com/flipperdevices/flipperzero-firmware/pull/1189) [With Changes By qqMajiKpp/Haseo](https://github.com/qqmajikpp/)
+- [Music Player (By DrZlo13)-OFW](https://github.com/flipperdevices/flipperzero-firmware/pull/1189)
+- [NFC Magic (By gornekich)](https://github.com/flipperdevices/flipperzero-firmware/pull/1966)
+- [NRF Sniff (By mothball187)](https://github.com/mothball187/flipperzero-nrf24/tree/main/nrfsniff) ([Pin Out](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/tree/420/applications/nrfsniff) from nocomp/Frog/UberGuidoZ) `Req: NRF24`
+- [NRF24 Scanner v2.1 (By vad7)](https://github.com/vad7/nrf24scan)
+- [Ocarina (By invalidna-me)](https://github.com/invalidna-me/flipperzero-ocarina) [Here are the LOTZ Songs](https://www.zeldadungeon.net/wiki/Ocarina_of_Time_Songs)
+- [Orgasmotron (By qqmajikpp)](https://github.com/qqmajikpp/flipperzero-firmware-wPlugins)
+- [Paint (By n-o-T-I-n-s-a-n-e)](https://github.com/n-o-T-I-n-s-a-n-e)
+- [Password Generator (By anakod)](https://github.com/anakod/flipper_passgen)
+- [PicoPass Reader (By Bettse)](https://github.com/flipperdevices/flipperzero-firmware/pull/1366)
+- [POCSAG Pager (By XMasterx & Shmuma)](https://github.com/xMasterX/flipper-pager)
+- [Pomodoro Timer (By sbrin)](https://github.com/sbrin/flipperzero_pomodoro)
+- [RFID Fuzzer (By Ganapati)](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/pull/245) [Changes by Unleashed/xMasterX](https://github.com/DarkFlippers/unleashed-firmware)
+- [RF Remix (By ESurge)](https://github.com/ESurge/flipperzero-firmware-unirfremix) [(Original By jimilinuxguy)](https://github.com/jimilinuxguy/flipperzero-universal-rf-remote/tree/028d615c83f059bb2c905530ddb3d4efbd3cbcae/applications/jukebox) [(More protocols thanks to darmiel & xMasterX)](https://github.com/darmiel/flipper-playlist/blob/feat/unirf-protocols/applications/unirfremix/unirfremix_app.c)
+- [RC2014 ColecoVision (By ezod)](https://github.com/ezod/flipperzero-rc2014-coleco)
+- [SAM (By Unknown)][Original?](https://github.com/ctoth/SAM)
+- [Sentry Safe (By H4ckd4ddy)](https://github.com/H4ckd4ddy/flipperzero-sentry-safe-plugin) ([Pin Out](https://github.com/RogueMaster/flipperzero-firmware-wPlugins/tree/420/applications/sentry_safe) from [UberGuidoZ](https://github.com/UberGuidoZ/))
+- [Signal Generator (By nminaylov)-OFW](https://github.com/flipperdevices/flipperzero-firmware/pull/1793)
+- [Spectrum Analyzer (By jolcese)](https://github.com/jolcese/flipperzero-firmware/tree/spectrum/applications/spectrum_analyzer) [Updates (for testing) Thanks to theY4Kman](https://github.com/theY4Kman/flipperzero-firmware)
+- [Sub-GHz Bruteforcer v3.4 (By Ganapati/xMasterX/derskythe)](https://github.com/derskythe/flipperzero-subbrute/tree/master)
+- [Sub-GHz Playlist (By darmiel)](https://github.com/darmiel/flipper-playlist)
+- [Temp Sensors Reader (By quen0n)](https://github.com/quen0n/Unitemp-Flipper-Zero-Plugin) `Req: DHT11/DHT22(AM2302)/AM2301/AM2320/HTU2XD`
+- [Temperature Sensor (By Mywk)](https://github.com/Mywk/FlipperTemperatureSensor) `Req: HTU2XD, SHT2X, SI702X, SI700X, SI701X or AM2320`
+- [Tuning Fork (By besya)](https://github.com/besya/flipperzero-tuning-fork)
+- [UART Echo (By DrZlo13)-OFW](https://github.com/flipperdevices/flipperzero-firmware/pull/831)
+- [USB HID Autofire (By pbek)](https://github.com/pbek/usb_hid_autofire)
+- [USB Keyboard (By huuck)](https://github.com/huuck/FlipperZeroUSBKeyboard)
+- [USB Midi (By DrZlo13)](https://github.com/DrZlo13/flipper-zero-usb-midi) with thanks to [xMasterX](https://github.com/xMasterX/unleashed-extra-pack)
+- [WAV Player (By DrZlo13)](https://github.com/flipperdevices/flipperzero-firmware/tree/zlo/wav-player) Updated by Atmanos & RogueMaster To Work
+- [WiFi (Deauther) V2 (By Timmotools)](https://github.com/Timmotools/flipperzero_esp8266_deautherv2) `Req: ESP8266` 
+- [WiFi (Marauder) v3.0 (By 0xchocolate)](https://github.com/0xchocolate/flipperzero-firmware-with-wifi-marauder-companion) `Req: ESP32 WITH MARAUDER FLASHED`
+- [WiFi Scanner v.0.4 (By SequoiaSan)](https://github.com/SequoiaSan/FlipperZero-WiFi-Scanner_Module-ESP8266) `Req: ESP8266 or ESP32`
+- [Wii EC Analyser (By csBlueChip)](https://github.com/csBlueChip/FlipperZero_WiiEC)
+- [Zero Tracker (By DrZZlo13)](https://github.com/DrZlo13/flipper-zero-music-tracker)
+
+<!-- The machine is now active. Recovery protocol initiated. Please stand by! -->
