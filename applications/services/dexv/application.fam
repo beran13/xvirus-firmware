@@ -1,0 +1,10 @@
+App(
+    appid="dexv",
+    apptype=FlipperAppType.STARTUP,
+    entry_point="dexv_on_system_start",
+    requires=["storage"],
+    order=1000,
+    provides=[
+        "dexv",
+    ],
+)

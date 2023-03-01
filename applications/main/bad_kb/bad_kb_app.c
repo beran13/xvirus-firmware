@@ -4,7 +4,7 @@
 #include <furi_hal.h>
 #include <storage/storage.h>
 #include <lib/toolbox/path.h>
-#include <xtreme/settings.h>
+#include <dexv/settings.h>
 
 #include <bt/bt_service/bt_i.h>
 #include <bt/bt_service/bt.h>
@@ -37,26 +37,9 @@ static void bad_kb_load_settings(BadKbApp* app) {
               !storage_file_eof(settings_file) && !isspace(chr)) {
             furi_string_push_back(app->keyboard_layout, chr);
         }
-    } else {
-        furi_string_reset(app->keyboard_layout);
     }
     storage_file_close(settings_file);
     storage_file_free(settings_file);
-
-    if(!furi_string_empty(app->keyboard_layout)) {
-        Storage* fs_api = furi_record_open(RECORD_STORAGE);
-        FileInfo layout_file_info;
-        FS_Error file_check_err = storage_common_stat(
-            fs_api, furi_string_get_cstr(app->keyboard_layout), &layout_file_info);
-        furi_record_close(RECORD_STORAGE);
-        if(file_check_err != FSE_OK) {
-            furi_string_reset(app->keyboard_layout);
-            return;
-        }
-        if(layout_file_info.size != 256) {
-            furi_string_reset(app->keyboard_layout);
-        }
-    }
 }
 
 static void bad_kb_save_settings(BadKbApp* app) {
@@ -115,7 +98,7 @@ BadKbApp* bad_kb_app_alloc(char* arg) {
 
     Bt* bt = furi_record_open(RECORD_BT);
     app->bt = bt;
-    app->is_bt = XTREME_SETTINGS()->bad_bt;
+    app->is_bt = D_SETTINGS()->bad_bt;
     const char* adv_name = bt_get_profile_adv_name(bt);
     memcpy(app->name, adv_name, BAD_KB_ADV_NAME_MAX_LEN);
     memcpy(app->bt_old_config.name, adv_name, BAD_KB_ADV_NAME_MAX_LEN);

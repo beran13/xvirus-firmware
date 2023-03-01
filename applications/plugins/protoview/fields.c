@@ -314,16 +314,11 @@ void fieldset_add_bin(ProtoViewFieldSet* fs, const char* name, uint64_t uval, ui
     fieldset_add_field(fs, f);
 }
 
-/* Allocate and append a string field. The string 's' does not need to point
- * to a null terminated string, but must have at least 'len' valid bytes
- * starting from the pointer. The field object will be correctly null
- * terminated. */
-void fieldset_add_str(ProtoViewFieldSet* fs, const char* name, const char* s, size_t len) {
+/* Allocate and append a string field. */
+void fieldset_add_str(ProtoViewFieldSet* fs, const char* name, const char* s) {
     ProtoViewField* f = field_new(FieldTypeStr, name);
-    f->len = len;
-    f->str = malloc(len + 1);
-    memcpy(f->str, s, len);
-    f->str[len] = 0;
+    f->str = strdup(s);
+    f->len = strlen(s);
     fieldset_add_field(fs, f);
 }
 

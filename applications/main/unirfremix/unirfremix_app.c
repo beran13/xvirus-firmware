@@ -522,14 +522,13 @@ static bool unirfremix_send_sub(UniRFRemix* app, FlipperFormat* fff_data) {
         furi_hal_subghz_reset();
         furi_hal_subghz_idle();
         furi_hal_subghz_load_custom_preset(app->txpreset->data);
-        furi_hal_gpio_init(furi_hal_subghz.cc1101_g0_pin, GpioModeInput, GpioPullNo, GpioSpeedLow);
+        furi_hal_gpio_init(&gpio_cc1101_g0, GpioModeInput, GpioPullNo, GpioSpeedLow);
 
         furi_hal_subghz_idle();
 
         furi_hal_subghz_set_frequency_and_path(app->txpreset->frequency);
-        furi_hal_gpio_write(furi_hal_subghz.cc1101_g0_pin, false);
-        furi_hal_gpio_init(
-            furi_hal_subghz.cc1101_g0_pin, GpioModeOutputPushPull, GpioPullNo, GpioSpeedLow);
+        furi_hal_gpio_write(&gpio_cc1101_g0, false);
+        furi_hal_gpio_init(&gpio_cc1101_g0, GpioModeOutputPushPull, GpioPullNo, GpioSpeedLow);
 
         if(!furi_hal_subghz_tx()) {
             FURI_LOG_E(TAG, "Sending not allowed");
@@ -640,7 +639,7 @@ static void render_callback(Canvas* canvas, void* ctx) {
         //canvas_draw_str(canvas, 0, 40, "D: ");
         //canvas_draw_str(canvas, 0, 50, "Ok: ");
 
-        //PNGs are located in assets/icons/UniRFRemix before compilation
+        //PNGs are located in assets/icons/UniRFRemix before compiliation
 
         //Icons for Labels
         //canvas_draw_icon(canvas, 0, 0, &I_UniRFRemix_LeftAlignedButtons_9x64);

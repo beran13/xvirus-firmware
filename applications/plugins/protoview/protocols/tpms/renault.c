@@ -1,7 +1,4 @@
-/* Copyright (C) 2022-2023 Salvatore Sanfilippo -- All Rights Reserved
- * See the LICENSE file for information about the license.
- *
- * Renault tires TPMS. Usually 443.92 Mhz FSK.
+/* Renault tires TPMS. Usually 443.92 Mhz FSK.
  *
  * Preamble + sync + Manchester bits. ~48us short pulse.
  * 9 Bytes in total not counting the preamble. */

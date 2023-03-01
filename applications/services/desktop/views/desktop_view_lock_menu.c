@@ -5,7 +5,7 @@
 
 #include "../desktop_i.h"
 #include "desktop_view_lock_menu.h"
-#include "xtreme/settings.h"
+#include "dexv/settings.h"
 
 #define LOCK_MENU_ITEMS_NB 5
 
@@ -13,7 +13,7 @@ typedef enum {
     DesktopLockMenuIndexLock,
     DesktopLockMenuIndexPinLock,
     DesktopLockMenuIndexPinLockShutdown,
-    DesktopLockMenuIndexXtremeSettings,
+    DesktopLockMenuIndexDsettings,
 
     DesktopLockMenuIndexTotalCount
 } DesktopLockMenuIndex;
@@ -67,8 +67,8 @@ void desktop_lock_menu_draw_callback(Canvas* canvas, void* model) {
             } else {
                 str = "Set PIN + Off";
             }
-        } else if(i == DesktopLockMenuIndexXtremeSettings) {
-            str = "Xtreme Settings";
+        } else if(i == DesktopLockMenuIndexDsettings) {
+            str = "Desktop Settings";
         }
 
         if(str) //-V547
@@ -127,8 +127,8 @@ bool desktop_lock_menu_input_callback(InputEvent* event, void* context) {
             lock_menu->callback(DesktopLockMenuEventPinLock, lock_menu->context);
         } else if((idx == DesktopLockMenuIndexPinLockShutdown) && (event->type == InputTypeShort)) {
             lock_menu->callback(DesktopLockMenuEventPinLockShutdown, lock_menu->context);
-        } else if((idx == DesktopLockMenuIndexXtremeSettings) && (event->type == InputTypeShort)) {
-            lock_menu->callback(DesktopLockMenuEventXtremeSettings, lock_menu->context);
+        } else if((idx == DesktopLockMenuIndexDsettings) && (event->type == InputTypeShort)) {
+            lock_menu->callback(DesktopLockMenuEventDsettings, lock_menu->context);
         }
         consumed = true;
     }

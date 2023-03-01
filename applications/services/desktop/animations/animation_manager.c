@@ -13,11 +13,11 @@
 #include "animation_storage.h"
 #include "animation_manager.h"
 
-#include "xtreme/assets.h"
+#include "dexv/assets.h"
 
 #define TAG "AnimationManager"
 
-#define HARDCODED_ANIMATION_NAME "Wrench_WATCHDOGS_128x64"
+#define HARDCODED_ANIMATION_NAME "thank_you_128x64"
 #define NO_SD_ANIMATION_NAME "L1_NoSd_128x49"
 #define BAD_BATTERY_ANIMATION_NAME "L1_BadBattery_128x47"
 
@@ -146,7 +146,7 @@ void animation_manager_check_blocking_process(AnimationManager* animation_manage
             const StorageAnimationManifestInfo* manifest_info =
                 animation_storage_get_meta(animation_manager->current_animation);
             bool valid = animation_manager_is_valid_idle_animation(
-                manifest_info, &stats, XTREME_SETTINGS()->unlock_anims);
+                manifest_info, &stats, D_SETTINGS()->unlock_anims);
 
             if(!valid) {
                 animation_manager_start_new_idle(animation_manager);
@@ -201,9 +201,9 @@ static void animation_manager_start_new_idle(AnimationManager* animation_manager
     const BubbleAnimation* bubble_animation =
         animation_storage_get_bubble_animation(animation_manager->current_animation);
     animation_manager->state = AnimationManagerStateIdle;
-    XtremeSettings* xtreme_settings = XTREME_SETTINGS();
-    int32_t duration = (xtreme_settings->cycle_anims == 0) ? (bubble_animation->duration) :
-                                                             (xtreme_settings->cycle_anims);
+    Dsettings* d_settings = D_SETTINGS();
+    int32_t duration = (d_settings->cycle_anims == 0) ? (bubble_animation->duration) :
+                                                             (d_settings->cycle_anims);
     furi_timer_start(
         animation_manager->idle_animation_timer, (duration > 0) ? (duration * 1000) : 0);
 }
@@ -389,7 +389,7 @@ static StorageAnimation*
     uint32_t whole_weight = 0;
 
     StorageAnimationList_it_t it;
-    bool unlock = XTREME_SETTINGS()->unlock_anims;
+    bool unlock = D_SETTINGS()->unlock_anims;
     for(StorageAnimationList_it(it, animation_list); !StorageAnimationList_end_p(it);) {
         StorageAnimation* storage_animation = *StorageAnimationList_ref(it);
         const StorageAnimationManifestInfo* manifest_info =
@@ -521,7 +521,7 @@ void animation_manager_load_and_continue_animation(AnimationManager* animation_m
                 const StorageAnimationManifestInfo* manifest_info =
                     animation_storage_get_meta(restore_animation);
                 bool valid = animation_manager_is_valid_idle_animation(
-                    manifest_info, &stats, XTREME_SETTINGS()->unlock_anims);
+                    manifest_info, &stats, D_SETTINGS()->unlock_anims);
                 if(valid) {
                     animation_manager_replace_current_animation(
                         animation_manager, restore_animation);
@@ -535,10 +535,10 @@ void animation_manager_load_and_continue_animation(AnimationManager* animation_m
                         const BubbleAnimation* bubble_animation =
                             animation_storage_get_bubble_animation(
                                 animation_manager->current_animation);
-                        XtremeSettings* xtreme_settings = XTREME_SETTINGS();
-                        int32_t duration = (xtreme_settings->cycle_anims == 0) ?
+                        Dsettings* d_settings = D_SETTINGS();
+                        int32_t duration = (d_settings->cycle_anims == 0) ?
                                                (bubble_animation->duration) :
-                                               (xtreme_settings->cycle_anims);
+                                               (d_settings->cycle_anims);
                         furi_timer_start(
                             animation_manager->idle_animation_timer,
                             (duration > 0) ? (duration * 1000) : 0);
@@ -582,7 +582,7 @@ static void animation_manager_switch_to_one_shot_view(AnimationManager* animatio
     view_stack_remove_view(animation_manager->view_stack, prev_view);
     view_stack_add_view(animation_manager->view_stack, next_view);
     one_shot_view_start_animation(
-        animation_manager->one_shot_view, XTREME_ASSETS()->A_Levelup_128x64);
+        animation_manager->one_shot_view, D_ASSETS()->A_Levelup_128x64);
 }
 
 static void animation_manager_switch_to_animation_view(AnimationManager* animation_manager) {

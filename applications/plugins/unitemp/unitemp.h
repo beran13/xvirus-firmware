@@ -148,7 +148,7 @@ bool unitemp_saveSettings(void);
  * 
  * @return Истина если загрузка успешная
  */
-bool unitemp_loadSettings(void);
+bool unitemp_loaDsettings(void);
 
 extern Unitemp* app;
 #endif

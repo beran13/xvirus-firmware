@@ -153,7 +153,7 @@
    * A relaxed timing would be 10ms
    * When the value is too short, the timerserver will not be able to count properly and all timeout may be random.
    * When the value is too long, the device may wake up more often than the most optimal configuration. However, the
-   * impact on power consumption would be marginal (unless the value selected is extremely too long). It is strongly
+   * impact on power consumption would be marginal (unless the value selected is edexvly too long). It is strongly
    * recommended to select a value large enough to make sure it is not too short to ensure reliability of the system
    * as this will have marginal impact on low power mode
    */

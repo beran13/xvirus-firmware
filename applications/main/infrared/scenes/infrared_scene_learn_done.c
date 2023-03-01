@@ -1,11 +1,11 @@
 #include "../infrared_i.h"
-#include "xtreme/assets.h"
+#include "dexv/assets.h"
 
 void infrared_scene_learn_done_on_enter(void* context) {
     Infrared* infrared = context;
     Popup* popup = infrared->popup;
 
-    popup_set_icon(popup, 32, 5, XTREME_ASSETS()->I_DolphinNice_96x59);
+    popup_set_icon(popup, 32, 5, D_ASSETS()->I_DolphinNice_96x59);
     if(infrared->app_state.is_learning_new_remote) {
         popup_set_header(popup, "New remote\ncreated!", 0, 0, AlignLeft, AlignTop);
     } else {

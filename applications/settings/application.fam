@@ -5,6 +5,7 @@ App(
     provides=[
         "passport",
         "system_settings",
+        "d_app",
         "about",
     ],
 )

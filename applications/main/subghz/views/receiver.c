@@ -7,14 +7,14 @@
 #include <assets_icons.h>
 #include <m-array.h>
 
-#include "xtreme/assets.h"
+#include "dexv/assets.h"
 
 #define FRAME_HEIGHT 12
 #define MAX_LEN_PX 111
 #define MENU_ITEMS 4u
 #define UNLOCK_CNT 3
 
-#define SUBGHZ_RAW_THRESHOLD_MIN -90.0f
+#define SUBGHZ_RAW_TRESHOLD_MIN -90.0f
 
 typedef struct {
     FuriString* item_str;
@@ -82,10 +82,10 @@ void subghz_receiver_rssi(SubGhzViewReceiver* instance, float rssi) {
         instance->view,
         SubGhzViewReceiverModel * model,
         {
-            if(rssi < SUBGHZ_RAW_THRESHOLD_MIN) {
+            if(rssi < SUBGHZ_RAW_TRESHOLD_MIN) {
                 model->u_rssi = 0;
             } else {
-                model->u_rssi = (uint8_t)(rssi - SUBGHZ_RAW_THRESHOLD_MIN);
+                model->u_rssi = (uint8_t)(rssi - SUBGHZ_RAW_TRESHOLD_MIN);
             }
         },
         true);
@@ -261,23 +261,13 @@ void subghz_view_receiver_draw(Canvas* canvas, SubGhzViewReceiverModel* model) {
 
     if(model->history_item == 0) {
         if(model->mode == SubGhzViewReceiverModeLive) {
-            canvas_draw_icon(
-                canvas,
-                0,
-                0,
-                furi_hal_subghz_get_radio_type() ? XTREME_ASSETS()->I_Fishing_123x52 :
-                                                   XTREME_ASSETS()->I_Scanning_123x52);
+            canvas_draw_icon(canvas, 0, 0, D_ASSETS()->I_Scanning_123x52);
             canvas_set_font(canvas, FontPrimary);
             canvas_draw_str(canvas, 63, 46, "Scanning...");
             //canvas_draw_line(canvas, 46, 51, 125, 51);
             canvas_set_font(canvas, FontSecondary);
         } else {
-            canvas_draw_icon(
-                canvas,
-                0,
-                0,
-                furi_hal_subghz_get_radio_type() ? XTREME_ASSETS()->I_Fishing_123x52 :
-                                                   XTREME_ASSETS()->I_Scanning_123x52);
+            canvas_draw_icon(canvas, 0, 0, D_ASSETS()->I_Scanning_123x52);
             canvas_set_font(canvas, FontPrimary);
             canvas_draw_str(canvas, 63, 46, "Decoding...");
             canvas_set_font(canvas, FontSecondary);

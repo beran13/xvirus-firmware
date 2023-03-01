@@ -97,8 +97,8 @@ bool desktop_scene_lock_menu_on_event(void* context, SceneManagerEvent event) {
             consumed = true;
             break;
 
-        case DesktopLockMenuEventXtremeSettings:
-            loader_start(desktop->loader, "Xtreme Settings", NULL);
+        case DesktopLockMenuEventDsettings:
+            loader_start(desktop->loader, "DM0 FW", NULL);
             break;
         default:
             break;

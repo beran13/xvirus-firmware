@@ -58,7 +58,7 @@ static uint32_t _exit_callback(void* context) {
     app->settings.temp_unit = variable_item_get_current_value_index(temperature_unit_item);
     app->settings.pressure_unit = variable_item_get_current_value_index(pressure_unit_item);
     unitemp_saveSettings();
-    unitemp_loadSettings();
+    unitemp_loaDsettings();
 
     //Возврат предыдущий вид
     return UnitempViewMainMenu;

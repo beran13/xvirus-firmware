@@ -52,8 +52,7 @@ void infrared_scene_universal_on_enter(void* context) {
         infrared_scene_universal_submenu_callback,
         context);
 
-    submenu_set_selected_item(
-        submenu, scene_manager_get_scene_state(infrared->scene_manager, InfraredSceneUniversal));
+    submenu_set_selected_item(submenu, 0);
 
     view_dispatcher_switch_to_view(infrared->view_dispatcher, InfraredViewSubmenu);
 }

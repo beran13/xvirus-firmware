@@ -77,7 +77,7 @@ bool unitemp_saveSettings(void) {
     return true;
 }
 
-bool unitemp_loadSettings(void) {
+bool unitemp_loaDsettings(void) {
     UNITEMP_DEBUG("Loading settings...");
 
     //Выделение памяти на поток
@@ -278,7 +278,7 @@ int32_t unitemp_app() {
     }
 
     //Загрузка настроек из SD-карты
-    unitemp_loadSettings();
+    unitemp_loaDsettings();
     //Применение настроек
     if(app->settings.infinityBacklight == true) {
         //Постоянное свечение подсветки

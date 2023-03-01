@@ -35,8 +35,6 @@ void morse_code_worker_fill_buffer(MorseCodeWorker* instance, uint32_t duration)
         furi_string_push_back(instance->buffer, *DOT);
     else if(duration <= (instance->dit_delta * 3))
         furi_string_push_back(instance->buffer, *LINE);
-    else
-        furi_string_reset(instance->buffer);
     if(furi_string_size(instance->buffer) > 5) furi_string_reset(instance->buffer);
     FURI_LOG_D("MorseCode: Buffer", "%s", furi_string_get_cstr(instance->buffer));
 }
@@ -89,13 +87,9 @@ static int32_t morse_code_worker_thread_callback(void* context) {
         if(!pushed) {
             if(end_tick + (instance->dit_delta * 3) < furi_get_tick()) {
                 //NEW LETTER
-                if(!furi_string_empty(instance->buffer)) {
-                    morse_code_worker_fill_letter(instance);
-                    if(instance->callback)
-                        instance->callback(instance->words, instance->callback_context);
-                } else {
-                    spaced = true;
-                }
+                morse_code_worker_fill_letter(instance);
+                if(instance->callback)
+                    instance->callback(instance->words, instance->callback_context);
                 pushed = true;
             }
         }
@@ -176,7 +170,6 @@ void morse_code_worker_start(MorseCodeWorker* instance) {
 void morse_code_worker_stop(MorseCodeWorker* instance) {
     furi_assert(instance);
     furi_assert(instance->is_running == true);
-    instance->play = false;
     instance->is_running = false;
     furi_thread_join(instance->thread);
     FURI_LOG_D("MorseCode: Stop", "Stop");

@@ -7,7 +7,7 @@ App(
     requires=[
         "input",
         "notification",
-        "xtreme",
+        "dexv",
     ],
     stack_size=2 * 1024,
     order=70,

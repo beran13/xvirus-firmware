@@ -1,7 +1,4 @@
-/* Copyright (C) 2022-2023 Salvatore Sanfilippo -- All Rights Reserved
- * See the LICENSE file for information about the license.
- *
- * Oregon remote termometers. Usually 443.92 Mhz OOK.
+/* Oregon remote termometers. Usually 443.92 Mhz OOK.
  *
  * The protocol is described here:
  * https://wmrx00.sourceforge.net/Arduino/OregonScientific-RF-Protocols.pdf

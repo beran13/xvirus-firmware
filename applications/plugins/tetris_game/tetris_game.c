@@ -6,6 +6,7 @@
 #include <string.h>
 #include <furi_hal_resources.h>
 #include <furi_hal_gpio.h>
+#include <dolphin/dolphin.h>
 
 #define BORDER_OFFSET 1
 #define MARGIN_OFFSET 3
@@ -14,9 +15,6 @@
 
 #define FIELD_WIDTH 11
 #define FIELD_HEIGHT 24
-
-#define MAX_FALL_SPEED 500
-#define MIN_FALL_SPEED 100
 
 typedef struct Point {
     // Also used for offset data, which is sometimes negative
@@ -153,6 +151,10 @@ static void tetris_game_render_callback(Canvas* const canvas, void* ctx) {
         canvas_set_font(canvas, FontPrimary);
         canvas_draw_str(canvas, 4, 63, "Game Over");
 
+        if(tetris_state->numLines % 8 == 0 && tetris_state->numLines != 0) {
+            DOLPHIN_DEED(getRandomDeed());
+        }
+
         char buffer[13];
         snprintf(buffer, sizeof(buffer), "Lines: %u", tetris_state->numLines);
         canvas_set_font(canvas, FontSecondary);
@@ -171,7 +173,7 @@ static void tetris_game_input_callback(InputEvent* input_event, FuriMessageQueue
 static void tetris_game_init_state(TetrisState* tetris_state) {
     tetris_state->gameState = GameStatePlaying;
     tetris_state->numLines = 0;
-    tetris_state->fallSpeed = MAX_FALL_SPEED;
+    tetris_state->fallSpeed = 500;
     memset(tetris_state->playField, 0, sizeof(tetris_state->playField));
 
     memcpy(&tetris_state->currPiece, &shapes[rand() % 7], sizeof(tetris_state->currPiece));
@@ -305,7 +307,6 @@ static void
             tetris_game_render_curr_piece(tetris_state);
             uint8_t numLines = 0;
             uint8_t lines[] = {0, 0, 0, 0};
-            uint16_t nextFallSpeed;
 
             tetris_game_check_for_lines(tetris_state, lines, &numLines);
             if(numLines > 0) {
@@ -326,11 +327,7 @@ static void
                 uint16_t oldNumLines = tetris_state->numLines;
                 tetris_state->numLines += numLines;
                 if((oldNumLines / 10) % 10 != (tetris_state->numLines / 10) % 10) {
-                    nextFallSpeed =
-                        tetris_state->fallSpeed - (100 / (tetris_state->numLines / 10));
-                    if(nextFallSpeed >= MIN_FALL_SPEED) {
-                        tetris_state->fallSpeed = nextFallSpeed;
-                    }
+                    tetris_state->fallSpeed -= 50;
                 }
             }
 
