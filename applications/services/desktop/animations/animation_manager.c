@@ -13,7 +13,7 @@
 #include "animation_storage.h"
 #include "animation_manager.h"
 
-#include "dexv/assets.h"
+#include "Dsettings/assets.h"
 
 #define TAG "AnimationManager"
 

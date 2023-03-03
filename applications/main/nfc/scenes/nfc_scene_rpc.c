@@ -1,5 +1,5 @@
 #include "../nfc_i.h"
-#include "dexv/assets.h"
+#include "Dsettings/assets.h"
 
 void nfc_scene_rpc_on_enter(void* context) {
     Nfc* nfc = context;

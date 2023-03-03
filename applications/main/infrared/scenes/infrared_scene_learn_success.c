@@ -1,5 +1,5 @@
 #include "../infrared_i.h"
-#include "dexv/assets.h"
+#include "Dsettings/assets.h"
 
 static void
     infrared_scene_learn_success_dialog_result_callback(DialogExResult result, void* context) {

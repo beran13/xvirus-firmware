@@ -98,7 +98,7 @@ bool desktop_scene_lock_menu_on_event(void* context, SceneManagerEvent event) {
             break;
 
         case DesktopLockMenuEventDsettings:
-            loader_start(desktop->loader, "DM0 FW", NULL);
+            loader_start(desktop->loader, "Dexvmaster Settings", NULL);
             break;
         default:
             break;

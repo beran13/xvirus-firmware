@@ -1,6 +1,6 @@
 #include "../lfrfid_i.h"
 #include "../helpers/rfid_writer.h"
-#include "dexv/assets.h"
+#include "Dsettings/assets.h"
 
 static void writer_initialize(T55xxTiming* t55xxtiming) {
     t55xxtiming->wait_time = 400;

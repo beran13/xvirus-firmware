@@ -1,5 +1,5 @@
 #include "../infrared_i.h"
-#include "dexv/assets.h"
+#include "Dsettings/assets.h"
 
 void infrared_scene_learn_done_on_enter(void* context) {
     Infrared* infrared = context;

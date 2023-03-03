@@ -11,15 +11,3 @@ App(
     order=90,
 )
 
-App(
-    appid="Dsettings",
-    name="DM0 FW",
-    apptype=FlipperAppType.SETTINGS,
-    entry_point="Dsettings",
-    stack_size=2 * 1024,
-    requires=[
-        "gui",
-        "Dsettings",
-    ],
-    order=90,
-)

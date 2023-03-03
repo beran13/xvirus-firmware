@@ -14,8 +14,8 @@
 #include "dolphin/dolphin_i.h"
 #include <lib/flipper_format/flipper_format.h>
 #include <m-array.h>
-#include "dexv/settings.h"
-#include "dexv/assets.h"
+#include "Dsettings/Settings.h"
+#include "Dsettings/assets.h"
 
 ARRAY_DEF(asset_packs, char*)
 

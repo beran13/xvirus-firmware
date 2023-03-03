@@ -3,7 +3,7 @@
 #include <toolbox/path.h>
 #include <gui/elements.h>
 #include <assets_icons.h>
-#include "dexv/assets.h"
+#include "Dsettings/assets.h"
 
 #define MAX_NAME_LEN 64
 

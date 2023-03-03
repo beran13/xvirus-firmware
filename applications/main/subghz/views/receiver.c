@@ -7,7 +7,7 @@
 #include <assets_icons.h>
 #include <m-array.h>
 
-#include "dexv/assets.h"
+#include "Dsettings/assets.h"
 
 #define FRAME_HEIGHT 12
 #define MAX_LEN_PX 111

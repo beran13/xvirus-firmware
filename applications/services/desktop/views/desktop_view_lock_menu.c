@@ -5,7 +5,7 @@
 
 #include "../desktop_i.h"
 #include "desktop_view_lock_menu.h"
-#include "dexv/settings.h"
+#include "Dsettings/Settings.h"
 
 #define LOCK_MENU_ITEMS_NB 5
 

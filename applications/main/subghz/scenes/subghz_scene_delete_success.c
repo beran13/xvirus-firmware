@@ -1,6 +1,6 @@
 #include "../subghz_i.h"
 #include "../helpers/subghz_custom_event.h"
-#include "dexv/assets.h"
+#include "Dsettings/assets.h"
 
 void subghz_scene_delete_success_popup_callback(void* context) {
     SubGhz* subghz = context;

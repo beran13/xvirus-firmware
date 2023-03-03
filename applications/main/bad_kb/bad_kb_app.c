@@ -4,7 +4,7 @@
 #include <furi_hal.h>
 #include <storage/storage.h>
 #include <lib/toolbox/path.h>
-#include <dexv/settings.h>
+#include <Dsettings/Settings.h>
 
 #include <bt/bt_service/bt_i.h>
 #include <bt/bt_service/bt.h>

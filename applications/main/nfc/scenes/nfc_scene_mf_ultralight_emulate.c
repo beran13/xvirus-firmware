@@ -1,6 +1,6 @@
 #include "../nfc_i.h"
 #include <lib/nfc/protocols/mifare_ultralight.h>
-#include "dexv/assets.h"
+#include "Dsettings/assets.h"
 
 #define NFC_SCENE_MF_ULTRALIGHT_EMULATE_LOG_SIZE_MAX (200)
 

@@ -7,7 +7,7 @@ static void d_app_scene_main_asset_pack_changed(VariableItem* item) {
     DApp* app = variable_item_get_context(item);
     uint8_t index = variable_item_get_current_value_index(item);
     variable_item_set_current_value_text(
-        item, index == 0 ? "SFW" : *asset_packs_get(app->asset_packs, index - 1));
+        item, index == 0 ? "Normal" : *asset_packs_get(app->asset_packs, index - 1));
     strlcpy(
         D_SETTINGS()->asset_pack,
         index == 0 ? "" : *asset_packs_get(app->asset_packs, index - 1),
@@ -196,7 +196,7 @@ void d_app_scene_main_on_enter(void* context) {
         app);
     variable_item_set_current_value_index(item, current_pack);
     variable_item_set_current_value_text(
-        item, current_pack == 0 ? "SFW" : *asset_packs_get(app->asset_packs, current_pack - 1));
+        item, current_pack == 0 ? "Normal" : *asset_packs_get(app->asset_packs, current_pack - 1));
 
     item = variable_item_list_add(
         var_item_list,

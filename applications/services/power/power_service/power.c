@@ -2,7 +2,7 @@
 
 #include <furi.h>
 #include <furi_hal.h>
-#include "dexv/settings.h"
+#include "Dsettings/Settings.h"
 
 #define POWER_OFF_TIMEOUT 90
 

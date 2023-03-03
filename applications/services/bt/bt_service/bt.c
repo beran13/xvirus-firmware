@@ -5,7 +5,7 @@
 #include <notification/notification_messages.h>
 #include <gui/elements.h>
 #include <assets_icons.h>
-#include "dexv/assets.h"
+#include "Dsettings/assets.h"
 
 #define TAG "BtSrv"
 

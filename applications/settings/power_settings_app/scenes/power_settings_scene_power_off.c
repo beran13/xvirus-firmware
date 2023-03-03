@@ -1,5 +1,5 @@
 #include "../power_settings_app.h"
-#include "dexv/assets.h"
+#include "Dsettings/assets.h"
 
 void power_settings_scene_power_off_dialog_callback(DialogExResult result, void* context) {
     furi_assert(context);

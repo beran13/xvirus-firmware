@@ -1,5 +1,5 @@
 #include "../lfrfid_i.h"
-#include "dexv/assets.h"
+#include "Dsettings/assets.h"
 
 static void lfrfid_write_callback(LFRFIDWorkerWriteResult result, void* context) {
     LfRfid* app = context;

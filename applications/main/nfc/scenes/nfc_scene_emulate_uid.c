@@ -1,5 +1,5 @@
 #include "../nfc_i.h"
-#include "dexv/assets.h"
+#include "Dsettings/assets.h"
 
 #define NFC_SCENE_EMULATE_UID_LOG_SIZE_MAX (200)
 

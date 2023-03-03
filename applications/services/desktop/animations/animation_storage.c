@@ -11,7 +11,7 @@
 #include "animation_storage_i.h"
 #include <assets_dolphin_internal.h>
 #include <assets_dolphin_blocking.h>
-#include "dexv/assets.h"
+#include "Dsettings/assets.h"
 #define ANIMATION_META_FILE "meta.txt"
 #define BASE_ANIMATION_DIR EXT_PATH("dolphin")
 #define TAG "AnimationStorage"
