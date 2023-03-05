@@ -7,7 +7,7 @@ static void d_app_scene_main_asset_pack_changed(VariableItem* item) {
     DApp* app = variable_item_get_context(item);
     uint8_t index = variable_item_get_current_value_index(item);
     variable_item_set_current_value_text(
-        item, index == 0 ? "Normal" : *asset_packs_get(app->asset_packs, index - 1));
+        item, index == 0 ? "Dexv" : *asset_packs_get(app->asset_packs, index - 1));
     strlcpy(
         D_SETTINGS()->asset_pack,
         index == 0 ? "" : *asset_packs_get(app->asset_packs, index - 1),
