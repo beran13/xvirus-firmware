@@ -1,6 +1,6 @@
 #include "../nfc_i.h"
 #include <dolphin/dolphin.h>
-#include "Dsettings/assets.h"
+#include "xvirus/assets.h"
 
 void nfc_scene_mf_classic_write_success_popup_callback(void* context) {
     Nfc* nfc = context;
@@ -14,7 +14,7 @@ void nfc_scene_mf_classic_write_success_on_enter(void* context) {
     notification_message(nfc->notifications, &sequence_success);
 
     Popup* popup = nfc->popup;
-    popup_set_icon(popup, 32, 5, D_ASSETS()->I_DolphinNice_96x59);
+    popup_set_icon(popup, 32, 5, XVIRUS_ASSETS()->I_DolphinNice_96x59);
     popup_set_header(popup, "Successfully\nwritten", 13, 22, AlignLeft, AlignBottom);
     popup_set_timeout(popup, 1500);
     popup_set_context(popup, nfc);

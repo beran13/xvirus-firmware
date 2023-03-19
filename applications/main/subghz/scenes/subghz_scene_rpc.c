@@ -1,7 +1,11 @@
 #include "../subghz_i.h"
 #include <lib/subghz/protocols/keeloq.h>
 #include <lib/subghz/protocols/star_line.h>
-#include "Dsettings/assets.h"
+#include <lib/subghz/protocols/alutech_at_4n.h>
+#include <lib/subghz/protocols/nice_flor_s.h>
+#include <lib/subghz/protocols/somfy_telis.h>
+
+#include "xvirus/assets.h"
 
 typedef enum {
     SubGhzRpcStateIdle,
@@ -14,7 +18,7 @@ void subghz_scene_rpc_on_enter(void* context) {
 
     popup_set_header(popup, "Sub-GHz", 89, 42, AlignCenter, AlignBottom);
     popup_set_text(popup, "RPC mode", 89, 44, AlignCenter, AlignTop);
-    popup_set_icon(popup, 0, 12, D_ASSETS()->I_RFIDDolphinSend_97x61);
+    popup_set_icon(popup, 0, 12, XVIRUS_ASSETS()->I_RFIDDolphinSend_97x61);
 
     view_dispatcher_switch_to_view(subghz->view_dispatcher, SubGhzViewIdPopup);
 
@@ -110,6 +114,10 @@ void subghz_scene_rpc_on_exit(void* context) {
 
     keeloq_reset_mfname();
     keeloq_reset_kl_type();
+    keeloq_reset_original_btn();
+    alutech_reset_original_btn();
+    nice_flors_reset_original_btn();
+    somfy_telis_reset_original_btn();
     star_line_reset_mfname();
     star_line_reset_kl_type();
 }

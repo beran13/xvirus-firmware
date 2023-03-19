@@ -11,7 +11,7 @@
 #include "animation_storage_i.h"
 #include <assets_dolphin_internal.h>
 #include <assets_dolphin_blocking.h>
-#include "Dsettings/assets.h"
+#include "xvirus/assets.h"
 #define ANIMATION_META_FILE "meta.txt"
 #define BASE_ANIMATION_DIR EXT_PATH("dolphin")
 #define TAG "AnimationStorage"
@@ -31,12 +31,12 @@ static void animation_storage_free_animation(BubbleAnimation** storage_animation
 static BubbleAnimation* animation_storage_load_animation(const char* name);
 
 void animation_handler_select_manifest() {
-    Dsettings* d_settings = D_SETTINGS();
+    XvirusSettings* xvirus_settings = XVIRUS_SETTINGS();
     FuriString* anim_dir = furi_string_alloc();
     FuriString* manifest = furi_string_alloc();
-    bool use_asset_pack = d_settings->asset_pack[0] != '\0';
+    bool use_asset_pack = xvirus_settings->asset_pack[0] != '\0';
     if(use_asset_pack) {
-        furi_string_printf(anim_dir, "%s/%s/Anims", PACKS_DIR, d_settings->asset_pack);
+        furi_string_printf(anim_dir, "%s/%s/Anims", PACKS_DIR, xvirus_settings->asset_pack);
         furi_string_printf(manifest, "%s/manifest.txt", furi_string_get_cstr(anim_dir));
         Storage* storage = furi_record_open(RECORD_STORAGE);
         if(storage_common_stat(storage, furi_string_get_cstr(manifest), NULL) == FSE_OK) {
@@ -325,7 +325,7 @@ static bool animation_storage_load_frames(
     FURI_CONST_ASSIGN(icon->width, width);
     icon->frames = malloc(sizeof(const uint8_t*) * icon->frame_count);
 
-    bool frames_ok = true;
+    bool frames_ok = false;
     File* file = storage_file_alloc(storage);
     FileInfo file_info;
     FuriString* filename;
@@ -333,41 +333,34 @@ static bool animation_storage_load_frames(
     size_t max_filesize = ROUND_UP_TO(width, 8) * height + 2;
 
     for(int i = 0; i < icon->frame_count; ++i) {
-        FURI_CONST_ASSIGN_PTR(icon->frames[i], 0);
-        if(frames_ok) {
-            frames_ok = false;
-            furi_string_printf(filename, "%s/%s/frame_%d.bm", ANIMATION_DIR, name, i);
-            do {
-                if(storage_common_stat(storage, furi_string_get_cstr(filename), &file_info) !=
-                   FSE_OK)
-                    break;
-                if(file_info.size > max_filesize) {
-                    FURI_LOG_E(
-                        TAG,
-                        "Filesize %lld, max: %d (width %d, height %d)",
-                        file_info.size,
-                        max_filesize,
-                        width,
-                        height);
-                    break;
-                }
-                if(!storage_file_open(
-                       file, furi_string_get_cstr(filename), FSAM_READ, FSOM_OPEN_EXISTING)) {
-                    FURI_LOG_E(TAG, "Can't open file \'%s\'", furi_string_get_cstr(filename));
-                    break;
-                }
+        frames_ok = false;
+        furi_string_printf(filename, "%s/%s/frame_%d.bm", ANIMATION_DIR, name, i);
 
-                FURI_CONST_ASSIGN_PTR(icon->frames[i], malloc(file_info.size));
-                if(storage_file_read(file, (void*)icon->frames[i], file_info.size) !=
-                   file_info.size) {
-                    FURI_LOG_E(TAG, "Read failed: \'%s\'", furi_string_get_cstr(filename));
-                    break;
-                } else {
-                    frames_ok = true;
-                }
-                storage_file_close(file);
-            } while(0);
+        if(storage_common_stat(storage, furi_string_get_cstr(filename), &file_info) != FSE_OK)
+            break;
+        if(file_info.size > max_filesize) {
+            FURI_LOG_E(
+                TAG,
+                "Filesize %lld, max: %d (width %d, height %d)",
+                file_info.size,
+                max_filesize,
+                width,
+                height);
+            break;
         }
+        if(!storage_file_open(
+               file, furi_string_get_cstr(filename), FSAM_READ, FSOM_OPEN_EXISTING)) {
+            FURI_LOG_E(TAG, "Can't open file \'%s\'", furi_string_get_cstr(filename));
+            break;
+        }
+
+        FURI_CONST_ASSIGN_PTR(icon->frames[i], malloc(file_info.size));
+        if(storage_file_read(file, (void*)icon->frames[i], file_info.size) != file_info.size) {
+            FURI_LOG_E(TAG, "Read failed: \'%s\'", furi_string_get_cstr(filename));
+            break;
+        }
+        storage_file_close(file);
+        frames_ok = true;
     }
 
     if(!frames_ok) {
@@ -527,8 +520,7 @@ static BubbleAnimation* animation_storage_load_animation(const char* name) {
         if(!flipper_format_read_uint32(ff, "Active cycles", &u32value, 1)) break; //-V779
         animation->active_cycles = u32value;
         if(!flipper_format_read_uint32(ff, "Frame rate", &u32value, 1)) break;
-        uint16_t anim_speed = D_SETTINGS()->anim_speed;
-        anim_speed = (anim_speed == 0 ? 100 : anim_speed);
+        uint16_t anim_speed = XVIRUS_SETTINGS()->anim_speed;
         u32value = (u32value * anim_speed) / 100;
         FURI_CONST_ASSIGN(animation->icon_animation.frame_rate, u32value < 1 ? 1 : u32value);
         if(!flipper_format_read_uint32(ff, "Duration", &u32value, 1)) break;

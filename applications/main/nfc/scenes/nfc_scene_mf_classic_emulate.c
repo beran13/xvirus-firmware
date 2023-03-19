@@ -1,5 +1,5 @@
 #include "../nfc_i.h"
-#include "Dsettings/assets.h"
+#include "xvirus/assets.h"
 
 #define NFC_MF_CLASSIC_DATA_NOT_CHANGED (0UL)
 #define NFC_MF_CLASSIC_DATA_CHANGED (1UL)
@@ -24,7 +24,7 @@ void nfc_scene_mf_classic_emulate_on_enter(void* context) {
     } else {
         nfc_text_store_set(nfc, "MIFARE\nClassic");
     }
-    popup_set_icon(popup, 0, 3, D_ASSETS()->I_NFC_dolphin_emulation_47x61);
+    popup_set_icon(popup, 0, 3, XVIRUS_ASSETS()->I_NFC_dolphin_emulation_47x61);
     popup_set_text(popup, nfc->text_store, 90, 28, AlignCenter, AlignTop);
 
     // Setup and start worker

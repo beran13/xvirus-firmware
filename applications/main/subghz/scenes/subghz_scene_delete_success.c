@@ -1,6 +1,6 @@
 #include "../subghz_i.h"
 #include "../helpers/subghz_custom_event.h"
-#include "Dsettings/assets.h"
+#include "xvirus/assets.h"
 
 void subghz_scene_delete_success_popup_callback(void* context) {
     SubGhz* subghz = context;
@@ -13,7 +13,7 @@ void subghz_scene_delete_success_on_enter(void* context) {
 
     // Setup view
     Popup* popup = subghz->popup;
-    popup_set_icon(popup, 0, 2, D_ASSETS()->I_DolphinMafia_115x62);
+    popup_set_icon(popup, 0, 2, XVIRUS_ASSETS()->I_DolphinMafia_115x62);
     popup_set_header(popup, "Deleted", 83, 19, AlignLeft, AlignBottom);
     popup_set_timeout(popup, 1500);
     popup_set_context(popup, subghz);

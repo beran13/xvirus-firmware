@@ -1,6 +1,6 @@
 #include "../lfrfid_i.h"
 #include "../helpers/rfid_writer.h"
-#include "Dsettings/assets.h"
+#include "xvirus/assets.h"
 
 static void writer_initialize(T55xxTiming* t55xxtiming) {
     t55xxtiming->wait_time = 400;
@@ -16,7 +16,7 @@ static void lfrfid_clear_t5577_password_and_config_to_EM(LfRfid* app) {
     Popup* popup = app->popup;
     char curr_buf[32] = {};
 
-    //TODO: use .txt file in resourses for passwords.
+    //TODO: use .txt file in resources for passwords.
     const uint32_t default_passwords[] = {
         0x51243648, 0x000D8787, 0x19920427, 0x50524F58, 0xF9DCEBA0, 0x65857569, 0x05D73B9F,
         0x89A69E60, 0x314159E0, 0xAA55BBBB, 0xA5B4C3D2, 0x1C0B5848, 0x00434343, 0x444E4752,
@@ -43,7 +43,7 @@ static void lfrfid_clear_t5577_password_and_config_to_EM(LfRfid* app) {
     writer_initialize(t55xxtiming);
 
     popup_set_header(popup, "Removing\npassword", 90, 36, AlignCenter, AlignCenter);
-    popup_set_icon(popup, 0, 3, D_ASSETS()->I_RFIDDolphinSend_97x61);
+    popup_set_icon(popup, 0, 3, XVIRUS_ASSETS()->I_RFIDDolphinSend_97x61);
     popup_set_text(popup, curr_buf, 90, 56, AlignCenter, AlignCenter);
     notification_message(app->notifications, &sequence_blink_start_magenta);
 
@@ -71,7 +71,7 @@ void lfrfid_scene_clear_t5577_on_enter(void* context) {
 
     notification_message(app->notifications, &sequence_success);
     popup_set_header(popup, "Done!", 94, 10, AlignCenter, AlignTop);
-    popup_set_icon(popup, 0, 7, D_ASSETS()->I_RFIDDolphinSuccess_108x57);
+    popup_set_icon(popup, 0, 7, XVIRUS_ASSETS()->I_RFIDDolphinSuccess_108x57);
     popup_set_context(popup, app);
     popup_set_callback(popup, lfrfid_popup_timeout_callback);
     popup_set_timeout(popup, 1500);

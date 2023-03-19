@@ -1,4 +1,4 @@
-#include "Dsettings/Settings.h"
+#include "xvirus/settings.h"
 #include "gui_i.h"
 #include <assets_icons.h>
 
@@ -55,12 +55,12 @@ static void gui_redraw_status_bar(Gui* gui, bool need_attention) {
     canvas_frame_set(
         gui->canvas, GUI_STATUS_BAR_X, GUI_STATUS_BAR_Y, GUI_DISPLAY_WIDTH, GUI_STATUS_BAR_HEIGHT);
 
-    Dsettings* d_settings = D_SETTINGS();
+    XvirusSettings* xvirus_settings = XVIRUS_SETTINGS();
 
     /* for support black theme - paint white area and
      * draw icon with transparent white color
      */
-    if(d_settings->bar_background) {
+    if(xvirus_settings->bar_background) {
         canvas_set_color(gui->canvas, ColorWhite);
         canvas_draw_box(gui->canvas, 1, 1, 9, 7);
         canvas_draw_box(gui->canvas, 7, 3, 58, 6);
@@ -77,7 +77,7 @@ static void gui_redraw_status_bar(Gui* gui, bool need_attention) {
     uint8_t x;
 
     // Right side
-    if(d_settings->battery_icon != BatteryIconOff) {
+    if(xvirus_settings->battery_icon != BatteryIconOff) {
         x = GUI_DISPLAY_WIDTH - 1;
         ViewPortArray_it(it, gui->layers[GuiLayerStatusBarRight]);
         while(!ViewPortArray_end_p(it) && right_used < GUI_STATUS_BAR_WIDTH) {
@@ -96,16 +96,20 @@ static void gui_redraw_status_bar(Gui* gui, bool need_attention) {
                     width + 2,
                     GUI_STATUS_BAR_WORKAREA_HEIGHT + 2);
                 // Hide battery background
-                if(d_settings->bar_borders) {
+                if(xvirus_settings->bar_borders) {
                     canvas_set_color(gui->canvas, ColorWhite);
                     canvas_draw_box(
-                        gui->canvas, -1, 0, canvas_width(gui->canvas) + 1, canvas_height(gui->canvas));
+                        gui->canvas,
+                        -1,
+                        0,
+                        canvas_width(gui->canvas) + 1,
+                        canvas_height(gui->canvas));
                 }
                 canvas_set_color(gui->canvas, ColorBlack);
                 // ViewPort draw
                 canvas_frame_set(
                     gui->canvas,
-                    x - d_settings->bar_borders,
+                    x - xvirus_settings->bar_borders,
                     GUI_STATUS_BAR_Y + 2,
                     width,
                     GUI_STATUS_BAR_WORKAREA_HEIGHT);
@@ -122,7 +126,7 @@ static void gui_redraw_status_bar(Gui* gui, bool need_attention) {
                 right_used + 4,
                 GUI_STATUS_BAR_HEIGHT);
             // Disable battery border
-            if(d_settings->bar_borders) {
+            if(xvirus_settings->bar_borders) {
                 canvas_set_color(gui->canvas, ColorBlack);
                 canvas_draw_rframe(
                     gui->canvas, 0, 0, canvas_width(gui->canvas), canvas_height(gui->canvas), 1);
@@ -143,7 +147,7 @@ static void gui_redraw_status_bar(Gui* gui, bool need_attention) {
     }
 
     // Left side
-    if(d_settings->status_icons) {
+    if(xvirus_settings->status_icons) {
         x = 2;
         ViewPortArray_it(it, gui->layers[GuiLayerStatusBarLeft]);
         while(!ViewPortArray_end_p(it) && (right_used + left_used) < GUI_STATUS_BAR_WIDTH) {
@@ -158,7 +162,7 @@ static void gui_redraw_status_bar(Gui* gui, bool need_attention) {
                     GUI_STATUS_BAR_Y + 1,
                     width + 2,
                     GUI_STATUS_BAR_WORKAREA_HEIGHT + 2);
-                if(d_settings->bar_borders) {
+                if(xvirus_settings->bar_borders) {
                     canvas_set_color(gui->canvas, ColorWhite);
                     canvas_draw_box(
                         gui->canvas, 0, 0, canvas_width(gui->canvas), canvas_height(gui->canvas));
@@ -184,7 +188,7 @@ static void gui_redraw_status_bar(Gui* gui, bool need_attention) {
                 GUI_STATUS_BAR_Y + 1,
                 width + 2,
                 GUI_STATUS_BAR_WORKAREA_HEIGHT + 2);
-            if(d_settings->bar_borders) {
+            if(xvirus_settings->bar_borders) {
                 canvas_set_color(gui->canvas, ColorWhite);
                 canvas_draw_box(
                     gui->canvas, 0, 0, canvas_width(gui->canvas), canvas_height(gui->canvas));
@@ -201,7 +205,7 @@ static void gui_redraw_status_bar(Gui* gui, bool need_attention) {
         // Draw frame around icons on the left
         if(left_used) {
             canvas_frame_set(gui->canvas, 0, 0, left_used + 3, GUI_STATUS_BAR_HEIGHT);
-            if(d_settings->bar_borders) {
+            if(xvirus_settings->bar_borders) {
                 canvas_draw_rframe(
                     gui->canvas, 0, 0, canvas_width(gui->canvas), canvas_height(gui->canvas), 1);
                 canvas_draw_line(
@@ -497,7 +501,7 @@ void gui_remove_framebuffer_callback(Gui* gui, GuiCanvasCommitCallback callback,
     gui_unlock(gui);
 }
 
-size_t gui_get_framebuffer_size(Gui* gui) {
+size_t gui_get_framebuffer_size(const Gui* gui) {
     furi_assert(gui);
     return canvas_get_buffer_size(gui->canvas);
 }

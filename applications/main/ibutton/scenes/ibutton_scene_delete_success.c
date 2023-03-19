@@ -1,5 +1,5 @@
 #include "../ibutton_i.h"
-#include "Dsettings/assets.h"
+#include "xvirus/assets.h"
 
 static void ibutton_scene_delete_success_popup_callback(void* context) {
     iButton* ibutton = context;
@@ -10,7 +10,7 @@ void ibutton_scene_delete_success_on_enter(void* context) {
     iButton* ibutton = context;
     Popup* popup = ibutton->popup;
 
-    popup_set_icon(popup, 0, 2, D_ASSETS()->I_DolphinMafia_115x62);
+    popup_set_icon(popup, 0, 2, XVIRUS_ASSETS()->I_DolphinMafia_115x62);
     popup_set_header(popup, "Deleted", 83, 19, AlignLeft, AlignBottom);
 
     popup_set_callback(popup, ibutton_scene_delete_success_popup_callback);

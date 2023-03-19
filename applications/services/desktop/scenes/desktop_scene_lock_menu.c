@@ -97,8 +97,9 @@ bool desktop_scene_lock_menu_on_event(void* context, SceneManagerEvent event) {
             consumed = true;
             break;
 
-        case DesktopLockMenuEventDsettings:
-            loader_start(desktop->loader, "Dexvmaster Settings", NULL);
+        case DesktopLockMenuEventXvirusSettings:
+            loader_start(
+                desktop->loader, FAP_LOADER_APP_NAME, EXT_PATH("apps/.Main/xvirus_app.fap"));
             break;
         default:
             break;

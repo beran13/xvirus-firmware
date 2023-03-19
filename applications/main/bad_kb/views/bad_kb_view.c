@@ -1,9 +1,10 @@
 #include "bad_kb_view.h"
 #include "../bad_kb_script.h"
+#include "../bad_kb_app_i.h"
 #include <toolbox/path.h>
 #include <gui/elements.h>
 #include <assets_icons.h>
-#include "Dsettings/assets.h"
+#include "xvirus/assets.h"
 
 #define MAX_NAME_LEN 64
 
@@ -24,7 +25,8 @@ static void bad_kb_draw_callback(Canvas* canvas, void* _model) {
     BadKbModel* model = _model;
 
     FuriString* disp_str;
-    disp_str = furi_string_alloc_set(model->file_name);
+    disp_str = furi_string_alloc_set(model->state.is_bt ? "(BT) " : "(USB) ");
+    furi_string_cat_str(disp_str, model->file_name);
     elements_string_fit_width(canvas, disp_str, 128 - 2);
     canvas_set_font(canvas, FontSecondary);
     canvas_draw_str(canvas, 2, 8, furi_string_get_cstr(disp_str));
@@ -38,6 +40,9 @@ static void bad_kb_draw_callback(Canvas* canvas, void* _model) {
             furi_string_push_back(disp_str, model->layout[i]);
         furi_string_push_back(disp_str, ')');
     }
+    if(model->state.pin) {
+        furi_string_cat_printf(disp_str, "  PIN: %ld", model->state.pin);
+    }
     elements_string_fit_width(canvas, disp_str, 128 - 2);
     canvas_draw_str(
         canvas, 2, 8 + canvas_current_font_height(canvas), furi_string_get_cstr(disp_str));
@@ -48,26 +53,22 @@ static void bad_kb_draw_callback(Canvas* canvas, void* _model) {
 
     if((model->state.state == BadKbStateIdle) || (model->state.state == BadKbStateDone) ||
        (model->state.state == BadKbStateNotConnected)) {
-        if(D_ASSETS()->is_nsfw) {
+        if(XVIRUS_ASSETS()->is_nsfw) {
             elements_button_center(canvas, "Cum");
         } else {
             elements_button_center(canvas, "Run");
         }
+        elements_button_left(canvas, "Config");
     } else if((model->state.state == BadKbStateRunning) || (model->state.state == BadKbStateDelay)) {
         elements_button_center(canvas, "Stop");
     } else if(model->state.state == BadKbStateWillRun) {
         elements_button_center(canvas, "Cancel");
     }
 
-    if((model->state.state == BadKbStateNotConnected) || (model->state.state == BadKbStateIdle) ||
-       (model->state.state == BadKbStateDone)) {
-        elements_button_left(canvas, "Config");
-    }
-
     if(model->state.state == BadKbStateNotConnected) {
         canvas_draw_icon(canvas, 4, 26, &I_Clock_18x18);
         canvas_set_font(canvas, FontPrimary);
-        if(D_ASSETS()->is_nsfw) {
+        if(XVIRUS_ASSETS()->is_nsfw) {
             canvas_draw_str_aligned(canvas, 127, 31, AlignRight, AlignBottom, "Plug me");
             canvas_draw_str_aligned(canvas, 127, 43, AlignRight, AlignBottom, "in, Daddy");
         } else {
@@ -77,7 +78,7 @@ static void bad_kb_draw_callback(Canvas* canvas, void* _model) {
     } else if(model->state.state == BadKbStateWillRun) {
         canvas_draw_icon(canvas, 4, 26, &I_Clock_18x18);
         canvas_set_font(canvas, FontPrimary);
-        if(D_ASSETS()->is_nsfw) {
+        if(XVIRUS_ASSETS()->is_nsfw) {
             canvas_draw_str_aligned(canvas, 127, 31, AlignRight, AlignBottom, "Cum on");
         } else {
             canvas_draw_str_aligned(canvas, 127, 31, AlignRight, AlignBottom, "Execute on");
@@ -214,6 +215,14 @@ void bad_kb_set_layout(BadKb* bad_kb, const char* layout) {
 
 void bad_kb_set_state(BadKb* bad_kb, BadKbState* st) {
     furi_assert(st);
+    uint32_t pin = 0;
+    if(bad_kb->context != NULL) {
+        BadKbApp* app = bad_kb->context;
+        if(app->bt != NULL) {
+            pin = app->bt->pin;
+        }
+    }
+    st->pin = pin;
     with_view_model(
         bad_kb->view,
         BadKbModel * model,
@@ -222,4 +231,19 @@ void bad_kb_set_state(BadKb* bad_kb, BadKbState* st) {
             model->anim_frame ^= 1;
         },
         true);
+}
+
+bool bad_kb_is_idle_state(BadKb* bad_kb) {
+    bool is_idle = false;
+    with_view_model(
+        bad_kb->view,
+        BadKbModel * model,
+        {
+            if((model->state.state == BadKbStateIdle) || (model->state.state == BadKbStateDone) ||
+               (model->state.state == BadKbStateNotConnected)) {
+                is_idle = true;
+            }
+        },
+        false);
+    return is_idle;
 }

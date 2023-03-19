@@ -7,7 +7,7 @@ App(
     requires=[
         "input",
         "notification",
-        "Dsettings",
+        "xvirus",
     ],
     stack_size=2 * 1024,
     order=70,

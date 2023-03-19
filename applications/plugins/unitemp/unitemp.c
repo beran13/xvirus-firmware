@@ -36,6 +36,9 @@ void unitemp_pascalToMmHg(Sensor* sensor) {
 void unitemp_pascalToKPa(Sensor* sensor) {
     sensor->pressure = sensor->pressure / 1000.0f;
 }
+void unitemp_pascalToHPa(Sensor* sensor) {
+    sensor->pressure = sensor->pressure / 100.0f;
+}
 void unitemp_pascalToInHg(Sensor* sensor) {
     sensor->pressure = sensor->pressure * 0.0002953007;
 }
@@ -77,7 +80,7 @@ bool unitemp_saveSettings(void) {
     return true;
 }
 
-bool unitemp_loaDsettings(void) {
+bool unitemp_loadSettings(void) {
     UNITEMP_DEBUG("Loading settings...");
 
     //Выделение памяти на поток
@@ -278,7 +281,7 @@ int32_t unitemp_app() {
     }
 
     //Загрузка настроек из SD-карты
-    unitemp_loaDsettings();
+    unitemp_loadSettings();
     //Применение настроек
     if(app->settings.infinityBacklight == true) {
         //Постоянное свечение подсветки

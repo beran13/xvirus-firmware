@@ -1,11 +1,11 @@
 #include "../infrared_i.h"
-#include "Dsettings/assets.h"
+#include "xvirus/assets.h"
 
 void infrared_scene_edit_rename_done_on_enter(void* context) {
     Infrared* infrared = context;
     Popup* popup = infrared->popup;
 
-    popup_set_icon(popup, 32, 5, D_ASSETS()->I_DolphinNice_96x59);
+    popup_set_icon(popup, 32, 5, XVIRUS_ASSETS()->I_DolphinNice_96x59);
     popup_set_header(popup, "Saved!", 5, 7, AlignLeft, AlignTop);
 
     popup_set_callback(popup, infrared_popup_closed_callback);

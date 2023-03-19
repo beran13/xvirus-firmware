@@ -1,0 +1,14 @@
+App(
+    appid="xvirus",
+    name="Xvirus",
+    apptype=FlipperAppType.SERVICE,
+    entry_point="xvirus_srv",
+    cdefines=["SRV_XVIRUS"],
+    requires=["storage"],
+    stack_size=1 * 1024,
+    order=46,
+    sdk_headers=[
+        "settings.h",
+        "assets.h",
+    ],
+)

@@ -1,7 +1,7 @@
 #include "../bad_kb_app_i.h"
 #include "furi_hal_power.h"
 #include "furi_hal_usb.h"
-#include <Dsettings/Settings.h>
+#include <xvirus/settings.h>
 
 enum VarItemListIndex {
     VarItemListIndexConnection,
@@ -11,8 +11,8 @@ enum VarItemListIndex {
 void bad_kb_scene_config_usb_connection_callback(VariableItem* item) {
     BadKbApp* bad_kb = variable_item_get_context(item);
     bad_kb->is_bt = variable_item_get_current_value_index(item);
-    D_SETTINGS()->bad_bt = bad_kb->is_bt;
-    D_SETTINGS_SAVE();
+    XVIRUS_SETTINGS()->bad_bt = bad_kb->is_bt;
+    XVIRUS_SETTINGS_SAVE();
     variable_item_set_current_value_text(item, bad_kb->is_bt ? "BT" : "USB");
     view_dispatcher_send_custom_event(bad_kb->view_dispatcher, VarItemListIndexConnection);
 }
@@ -50,19 +50,7 @@ bool bad_kb_scene_config_usb_on_event(void* context, SceneManagerEvent event) {
         if(event.event == VarItemListIndexKeyboardLayout) {
             scene_manager_next_scene(bad_kb->scene_manager, BadKbSceneConfigLayout);
         } else if(event.event == VarItemListIndexConnection) {
-            bad_kb_script_close(bad_kb->bad_kb_script);
-            bad_kb_connection_deinit(bad_kb->bt);
-            bad_kb->bad_kb_script =
-                bad_kb_script_open(bad_kb->file_path, bad_kb->is_bt ? bad_kb->bt : NULL);
-            bad_kb_script_set_keyboard_layout(bad_kb->bad_kb_script, bad_kb->keyboard_layout);
-            scene_manager_previous_scene(bad_kb->scene_manager);
-            if(bad_kb->is_bt) {
-                scene_manager_next_scene(bad_kb->scene_manager, BadKbSceneConfigBt);
-            } else {
-                scene_manager_next_scene(bad_kb->scene_manager, BadKbSceneConfigUsb);
-            }
-            // } else {
-            //     furi_crash("Unknown key type");
+            bad_kb_config_switch_mode(bad_kb);
         }
     }
 

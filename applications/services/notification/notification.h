@@ -31,7 +31,7 @@ typedef struct {
     float speaker_volume;
     bool vibro;
     float display_brightness;
-} NotificationMessageDataForceDsettings;
+} NotificationMessageDataForcedSettings;
 
 typedef struct {
     uint16_t on_time;
@@ -45,7 +45,7 @@ typedef union {
     NotificationMessageDataLedBlink led_blink;
     NotificationMessageDataVibro vibro;
     NotificationMessageDataDelay delay;
-    NotificationMessageDataForceDsettings forced_settings;
+    NotificationMessageDataForcedSettings forced_settings;
 } NotificationMessageData;
 
 typedef enum {

@@ -1,19 +1,15 @@
 #include <furi.h>
 #include <gui/elements.h>
-#include <dolphin/dolphin.h>
 #include <assets_icons.h>
 
 #include "../desktop_i.h"
 #include "desktop_view_lock_menu.h"
-#include "Dsettings/Settings.h"
-
-#define LOCK_MENU_ITEMS_NB 5
 
 typedef enum {
     DesktopLockMenuIndexLock,
     DesktopLockMenuIndexPinLock,
     DesktopLockMenuIndexPinLockShutdown,
-    DesktopLockMenuIndexDsettings,
+    DesktopLockMenuIndexXvirusSettings,
 
     DesktopLockMenuIndexTotalCount
 } DesktopLockMenuIndex;
@@ -67,8 +63,8 @@ void desktop_lock_menu_draw_callback(Canvas* canvas, void* model) {
             } else {
                 str = "Set PIN + Off";
             }
-        } else if(i == DesktopLockMenuIndexDsettings) {
-            str = "Desktop Settings";
+        } else if(i == DesktopLockMenuIndexXvirusSettings) {
+            str = "Xvirus Settings";
         }
 
         if(str) //-V547
@@ -127,8 +123,8 @@ bool desktop_lock_menu_input_callback(InputEvent* event, void* context) {
             lock_menu->callback(DesktopLockMenuEventPinLock, lock_menu->context);
         } else if((idx == DesktopLockMenuIndexPinLockShutdown) && (event->type == InputTypeShort)) {
             lock_menu->callback(DesktopLockMenuEventPinLockShutdown, lock_menu->context);
-        } else if((idx == DesktopLockMenuIndexDsettings) && (event->type == InputTypeShort)) {
-            lock_menu->callback(DesktopLockMenuEventDsettings, lock_menu->context);
+        } else if((idx == DesktopLockMenuIndexXvirusSettings) && (event->type == InputTypeShort)) {
+            lock_menu->callback(DesktopLockMenuEventXvirusSettings, lock_menu->context);
         }
         consumed = true;
     }
