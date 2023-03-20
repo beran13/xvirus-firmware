@@ -7,55 +7,6 @@
 Welcome to [Dexv Zero](https://discord.gg/dexvirus)'s Firmware repo!
 My goal is to make a really nice flipper CFW, and to make it a pleasure for everyone to work with.
 
-<h2 align="center">Change log 1.5:</h2>
-
-```txt
-Added
-- Some animations from Wrench's repo https://github.com/wrenchathome/flip0anims/
-- Jamming Files
-- Custom subghz presets
-- Subghz and IR signal replication via gpio | Credits to @ankris812, exact commit lost to time as of rn
-- Honda Keys (CVE-2022-27254)
-- New API Routes for Locale settings
-- Scrolling view for long file names in browser
-- Tamagotchi rom
-```
-```txt
-Updated
-
-- All graphics
-- Folder handling for empty ones (Now indicate they are empty)
-- Applications now use the new Locale setting
-- Compiler now handles all non-compiled faps during build
-- Compiler now accepts WIP SDK 
-- Compiler just stfu about non-fatal problems
-- Some further NFC stuff
-- Weather App
-- Applications now use above mentioned API Routes
-```
-```txt
-Fixed
-
-- Passport crash on high level
-- Dummy_mode getting you XP
-- Leveling system
-- Mood system
-```
-```txt
-REMOVED
-
-- Broken apps (bad apple, chess, etc.)
-- Unused code from FAPs and system calls
-```
-
-----
-<br>
-<h2 align="center">Known Bugs:</h2>
-
-```txt
-- Name Changer app crashes when you close it without using it
-```
-
 # Build It Yourself
 
 First clone the repository: 
