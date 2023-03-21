@@ -125,6 +125,7 @@ static bool xvirus_app_back_event_callback(void* context) {
 XvirusApp* xvirus_app_alloc() {
     XvirusApp* app = malloc(sizeof(XvirusApp));
     app->gui = furi_record_open(RECORD_GUI);
+    app->notification = furi_record_open(RECORD_NOTIFICATION);
 
     // View Dispatcher and Scene Manager
     app->view_dispatcher = view_dispatcher_alloc();
@@ -260,6 +261,7 @@ void xvirus_app_free(XvirusApp* app) {
     furi_string_free(app->version_tag);
 
     // Records
+    furi_record_close(RECORD_NOTIFICATION);
     furi_record_close(RECORD_GUI);
     free(app);
 }

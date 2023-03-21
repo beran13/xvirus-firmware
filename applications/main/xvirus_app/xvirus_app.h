@@ -20,6 +20,8 @@
 #include <m-array.h>
 #include "xvirus/settings.h"
 #include "xvirus/assets.h"
+#include <notification/notification_app.h>
+#include <rgb_backlight/rgb_backlight.h>
 
 #define XVIRUS_SUBGHZ_FREQ_BUFFER_SIZE 6
 
@@ -27,6 +29,7 @@ ARRAY_DEF(asset_packs, char*)
 
 typedef struct {
     Gui* gui;
+    NotificationApp* notification;
     SceneManager* scene_manager;
     ViewDispatcher* view_dispatcher;
     VariableItemList* var_item_list;

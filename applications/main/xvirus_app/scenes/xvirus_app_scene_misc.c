@@ -14,13 +14,21 @@ void xvirus_app_scene_misc_var_item_list_callback(void* context, uint32_t index)
     view_dispatcher_send_custom_event(app->view_dispatcher, index);
 }
 
+static void xvirus_app_scene_misc_lcd_color_changed(VariableItem* item) {
+    XvirusApp* app = variable_item_get_context(item);
+    uint8_t index = variable_item_get_current_value_index(item);
+    variable_item_set_current_value_text(item, rgb_backlight_get_color_text(index));
+    rgb_backlight_set_color(index);
+    notification_message(app->notification, &sequence_display_backlight_on);
+}
+
 static void xvirus_app_scene_misc_rgb_backlight_changed(VariableItem* item) {
     XvirusApp* app = variable_item_get_context(item);
     bool value = variable_item_get_current_value_index(item);
     variable_item_set_current_value_text(item, value ? "ON" : "OFF");
     XVIRUS_SETTINGS()->rgb_backlight = value;
     app->save_settings = true;
-    app->require_reboot = true;
+    notification_message(app->notification, &sequence_display_backlight_on);
 }
 
 static void xvirus_app_scene_misc_sort_dirs_first_changed(VariableItem* item) {
@@ -60,10 +68,18 @@ void xvirus_app_scene_misc_on_enter(void* context) {
 
     variable_item_list_add(var_item_list, "Change Device Name", 0, NULL, app);
 
-    item = variable_item_list_add(
+       item = variable_item_list_add(
         var_item_list, "RGB Backlight", 2, xvirus_app_scene_misc_rgb_backlight_changed, app);
     variable_item_set_current_value_index(item, xvirus_settings->rgb_backlight);
     variable_item_set_current_value_text(item, xvirus_settings->rgb_backlight ? "ON" : "OFF");
+
+    item = variable_item_list_add(
+        var_item_list, "LCD Color", rgb_backlight_get_color_count(), xvirus_app_scene_misc_lcd_color_changed, app);
+    value_index = rgb_backlight_get_settings()->display_color_index;
+    variable_item_set_current_value_index(item, value_index);
+    variable_item_set_current_value_text(item, rgb_backlight_get_color_text(value_index));
+    variable_item_set_locked(item, !xvirus_settings->rgb_backlight, "Needs RGB\nBacklight!");
+
 
     variable_item_list_add(var_item_list, "      Experimental Options:", 0, NULL, app);
 

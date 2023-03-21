@@ -1,5 +1,5 @@
 entry,status,name,type,params
-Version,+,18.0,,
+Version,v,19.0,,
 Header,+,applications/services/bt/bt_service/bt.h,,
 Header,+,applications/services/cli/cli.h,,
 Header,+,applications/services/cli/cli_vcp.h,,
@@ -35,10 +35,11 @@ Header,+,applications/services/locale/locale.h,,
 Header,+,applications/services/notification/notification.h,,
 Header,+,applications/services/notification/notification_messages.h,,
 Header,+,applications/services/power/power_service/power.h,,
+Header,?,applications/services/rgb_backlight/rgb_backlight.h,,
 Header,+,applications/services/rpc/rpc_app.h,,
 Header,+,applications/services/storage/storage.h,,
-Header,+,applications/services/xvirus/assets.h,,
-Header,+,applications/services/xvirus/settings.h,,
+Header,?,applications/services/xvirus/assets.h,,
+Header,?,applications/services/xvirus/settings.h,,
 Header,+,firmware/targets/f7/furi_hal/furi_hal_clock.h,,
 Header,+,firmware/targets/f7/furi_hal/furi_hal_console.h,,
 Header,+,firmware/targets/f7/furi_hal/furi_hal_flash.h,,
@@ -308,13 +309,17 @@ Function,-,LL_USART_DeInit,ErrorStatus,USART_TypeDef*
 Function,+,LL_USART_Init,ErrorStatus,"USART_TypeDef*, LL_USART_InitTypeDef*"
 Function,-,LL_USART_StructInit,void,LL_USART_InitTypeDef*
 Function,-,LL_mDelay,void,uint32_t
+Function,?,SK6805_get_led_count,uint8_t,
+Function,?,SK6805_init,void,
+Function,?,SK6805_set_led_color,void,"uint8_t, uint8_t, uint8_t, uint8_t"
+Function,?,SK6805_update,void,
 Function,-,SystemCoreClockUpdate,void,
 Function,-,SystemInit,void,
-Function,+,XVIRUS_ASSETS,XvirusAssets*,
-Function,-,XVIRUS_ASSETS_LOAD,void,
-Function,+,XVIRUS_SETTINGS,XvirusSettings*,
-Function,-,XVIRUS_SETTINGS_LOAD,void,
-Function,+,XVIRUS_SETTINGS_SAVE,_Bool,
+Function,?,XVIRUS_ASSETS,XvirusAssets*,
+Function,?,XVIRUS_ASSETS_LOAD,void,
+Function,?,XVIRUS_SETTINGS,XvirusSettings*,
+Function,?,XVIRUS_SETTINGS_LOAD,void,
+Function,?,XVIRUS_SETTINGS_SAVE,_Bool,
 Function,-,_Exit,void,int
 Function,-,__assert,void,"const char*, int, const char*"
 Function,+,__assert_func,void,"const char*, int, const char*, const char*"
@@ -2495,6 +2500,13 @@ Function,-,rfal_platform_spi_acquire,void,
 Function,-,rfal_platform_spi_release,void,
 Function,-,rfal_set_callback_context,void,void*
 Function,-,rfal_set_state_changed_callback,void,RfalStateChangedCallback
+Function,?,rgb_backlight_get_color_count,uint8_t,
+Function,?,rgb_backlight_get_color_text,const char*,uint8_t
+Function,?,rgb_backlight_get_settings,RGBBacklightSettings*,
+Function,?,rgb_backlight_load_settings,void,
+Function,?,rgb_backlight_save_settings,void,
+Function,?,rgb_backlight_set_color,void,uint8_t
+Function,?,rgb_backlight_update,void,uint8_t
 Function,-,rindex,char*,"const char*, int"
 Function,-,rint,double,double
 Function,-,rintf,float,float

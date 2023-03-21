@@ -1,17 +1,14 @@
 /*
     RGB backlight FlipperZero driver
     Copyright (C) 2022-2023 Victor Nikitchuk (https://github.com/quen0n)
-
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
@@ -34,7 +31,7 @@ static RGBBacklightSettings rgb_settings = {
     .settings_is_loaded = false};
 
 static const RGBBacklightColor colors[] = {
-    {"Orange", 255, 69, 0},
+    {"Orange", 255, 165, 0},
     {"Red", 255, 0, 0},
     {"Maroon", 128, 0, 0},
     {"Yellow", 255, 255, 0},
@@ -173,4 +170,9 @@ void rgb_backlight_update(uint8_t brightness) {
     }
 
     SK6805_update();
+}
+
+int32_t rgb_backlight_srv(void* p) {
+    UNUSED(p);
+    return 0;
 }
