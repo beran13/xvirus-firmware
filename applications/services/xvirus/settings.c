@@ -47,6 +47,7 @@ void XVIRUS_SETTINGS_LOAD() {
             xvirus_settings->bad_bt_remember = false; // OFF
             xvirus_settings->butthurt_timer = 43200; // 12 H
             xvirus_settings->sort_dirs_first = true; // ON
+            xvirus_settings->rgb_backlight = false; // OFF
             xvirus_settings->dark_mode = false; // OFF
             xvirus_settings->left_handed = false; // OFF
         }

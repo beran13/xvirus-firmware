@@ -35,6 +35,7 @@ typedef struct {
     bool bad_bt;
     bool bad_bt_remember;
     int32_t butthurt_timer;
+    bool rgb_backlight;
     bool sort_dirs_first;
     bool dark_mode;
     bool left_handed;

@@ -2,6 +2,7 @@
 
 enum VarItemListIndex {
     VarItemListIndexSortDirsFirst,
+    VarItemListIndexRgbBacklight,
     VarItemListIndexChangeDeviceName,
     VarItemListIndexExperimentalOptions,
     VarItemListIndexDarkMode,
@@ -11,6 +12,15 @@ enum VarItemListIndex {
 void xvirus_app_scene_misc_var_item_list_callback(void* context, uint32_t index) {
     XvirusApp* app = context;
     view_dispatcher_send_custom_event(app->view_dispatcher, index);
+}
+
+static void xvirus_app_scene_misc_rgb_backlight_changed(VariableItem* item) {
+    XvirusApp* app = variable_item_get_context(item);
+    bool value = variable_item_get_current_value_index(item);
+    variable_item_set_current_value_text(item, value ? "ON" : "OFF");
+    XVIRUS_SETTINGS()->rgb_backlight = value;
+    app->save_settings = true;
+    app->require_reboot = true;
 }
 
 static void xvirus_app_scene_misc_sort_dirs_first_changed(VariableItem* item) {
@@ -49,6 +59,11 @@ void xvirus_app_scene_misc_on_enter(void* context) {
     variable_item_set_current_value_text(item, xvirus_settings->sort_dirs_first ? "ON" : "OFF");
 
     variable_item_list_add(var_item_list, "Change Device Name", 0, NULL, app);
+
+    item = variable_item_list_add(
+        var_item_list, "RGB Backlight", 2, xvirus_app_scene_misc_rgb_backlight_changed, app);
+    variable_item_set_current_value_index(item, xvirus_settings->rgb_backlight);
+    variable_item_set_current_value_text(item, xvirus_settings->rgb_backlight ? "ON" : "OFF");
 
     variable_item_list_add(var_item_list, "      Experimental Options:", 0, NULL, app);
 
