@@ -22,10 +22,6 @@ Finally build the package for the latest DEV build, be warned bugs may still be 
 ./fbt updater_package
 ```
 
-# Read The Docs
-
-Check out details on [how to build firmware](documentation/fbt.md), [write applications](documentation/AppsOnSDCard.md), [un-brick your device](documentation/KeyCombo.md) and more in the `documentation` folder made by the Flipper team. 
-
 # Install Without Compiling
 
 1.Install the latest firmware release from [releases](https://github.com/DXVVAY/Dexvmaster0/releases).
