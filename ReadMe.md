@@ -19,7 +19,7 @@ cd dexvmaster0
 ```
 Finally build the package for the latest DEV build, be warned bugs may still be found:
 ```shell
-$ ./fbt updater_package
+./fbt updater_package
 ```
 
 # Read The Docs
