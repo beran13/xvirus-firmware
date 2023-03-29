@@ -1,3 +1,10 @@
+## ⬇️ Download
+
+>### [🐬 qFlipper Package (.tgz)](https://github.com/DXVVAY/Dexvmaster0/releases/download/{release_tag}/{release_tag}.tgz)
+
+>### [📦 Zipped Archive (.zip)](https://github.com/DXVVAY/Dexvmaster0/releases/download/{release_tag}/{release_tag}.zip)
+
+
 <h1>Changelog</h1>
 
 *Added:
