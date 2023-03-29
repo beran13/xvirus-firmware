@@ -1,5 +1,4 @@
 ## ⬇️ Download
->### [🖥️ Web Updater (chrome)](https://lab.flipper.net/?url={webupdater_url}&channel=DM0-Updater&version={release_tag}) [recommended]
 
 >### [🐬 qFlipper Package (.tgz)](https://github.com/DXVVAY/Dexvmaster0/releases/download/{release_tag}/{release_tag}.tgz)
 
