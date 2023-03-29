@@ -1,3 +1,4 @@
+*~
 *.swp
 *.swo
 *.gdb_history
@@ -67,7 +68,7 @@ PVS-Studio.log
 .gdbinit
 
 
-# DM0-specific:
+# XFW-specific:
 
 # Automate files, etc
 automate.py

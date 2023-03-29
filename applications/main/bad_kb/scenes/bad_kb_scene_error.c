@@ -1,4 +1,4 @@
-#include "../bad_kb_app_i.h"
+#include "../bad_kb_app.h"
 #include "xvirus/assets.h"
 
 static void

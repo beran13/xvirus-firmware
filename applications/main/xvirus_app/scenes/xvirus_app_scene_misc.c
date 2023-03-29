@@ -1,12 +1,11 @@
 #include "../xvirus_app.h"
 
 enum VarItemListIndex {
-    VarItemListIndexSortDirsFirst,
-    VarItemListIndexRgbBacklight,
     VarItemListIndexChangeDeviceName,
-    VarItemListIndexExperimentalOptions,
-    VarItemListIndexDarkMode,
-    VarItemListIndexLeftHanded,
+    VarItemListIndexXpLevel,
+    VarItemListIndexButthurtTimer,
+    VarItemListIndexRgbBacklight,
+    VarItemListIndexLcdColor,
 };
 
 void xvirus_app_scene_misc_var_item_list_callback(void* context, uint32_t index) {
@@ -14,45 +13,35 @@ void xvirus_app_scene_misc_var_item_list_callback(void* context, uint32_t index)
     view_dispatcher_send_custom_event(app->view_dispatcher, index);
 }
 
+static void xvirus_app_scene_misc_xp_level_changed(VariableItem* item) {
+    XvirusApp* app = variable_item_get_context(item);
+    app->xp_level = variable_item_get_current_value_index(item) + 1;
+    char level_str[4];
+    snprintf(level_str, 4, "%li", app->xp_level);
+    variable_item_set_current_value_text(item, level_str);
+    app->save_level = true;
+}
+
+const char* const butthurt_timer_names[] =
+    {"OFF", "30 M", "1 H", "2 H", "4 H", "6 H", "8 H", "12 H", "24 H", "48 H"};
+const int32_t butthurt_timer_values[COUNT_OF(butthurt_timer_names)] =
+    {-1, 1800, 3600, 7200, 14400, 21600, 28800, 43200, 86400, 172800};
+static void xvirus_app_scene_misc_butthurt_timer_changed(VariableItem* item) {
+    XvirusApp* app = variable_item_get_context(item);
+    uint8_t index = variable_item_get_current_value_index(item);
+    variable_item_set_current_value_text(item, butthurt_timer_names[index]);
+    XVIRUS_SETTINGS()->butthurt_timer = butthurt_timer_values[index];
+    app->save_settings = true;
+    app->require_reboot = true;
+}
+
 static void xvirus_app_scene_misc_lcd_color_changed(VariableItem* item) {
     XvirusApp* app = variable_item_get_context(item);
     uint8_t index = variable_item_get_current_value_index(item);
     variable_item_set_current_value_text(item, rgb_backlight_get_color_text(index));
     rgb_backlight_set_color(index);
+    app->save_backlight = true;
     notification_message(app->notification, &sequence_display_backlight_on);
-}
-
-static void xvirus_app_scene_misc_rgb_backlight_changed(VariableItem* item) {
-    XvirusApp* app = variable_item_get_context(item);
-    bool value = variable_item_get_current_value_index(item);
-    variable_item_set_current_value_text(item, value ? "ON" : "OFF");
-    XVIRUS_SETTINGS()->rgb_backlight = value;
-    app->save_settings = true;
-    notification_message(app->notification, &sequence_display_backlight_on);
-}
-
-static void xvirus_app_scene_misc_sort_dirs_first_changed(VariableItem* item) {
-    XvirusApp* app = variable_item_get_context(item);
-    bool value = variable_item_get_current_value_index(item);
-    variable_item_set_current_value_text(item, value ? "ON" : "OFF");
-    XVIRUS_SETTINGS()->sort_dirs_first = value;
-    app->save_settings = true;
-}
-
-static void xvirus_app_scene_misc_dark_mode_changed(VariableItem* item) {
-    XvirusApp* app = variable_item_get_context(item);
-    bool value = variable_item_get_current_value_index(item);
-    variable_item_set_current_value_text(item, value ? "ON" : "OFF");
-    XVIRUS_SETTINGS()->dark_mode = value;
-    app->save_settings = true;
-}
-
-static void xvirus_app_scene_misc_left_handed_changed(VariableItem* item) {
-    XvirusApp* app = variable_item_get_context(item);
-    bool value = variable_item_get_current_value_index(item);
-    variable_item_set_current_value_text(item, value ? "ON" : "OFF");
-    XVIRUS_SETTINGS()->left_handed = value;
-    app->save_settings = true;
 }
 
 void xvirus_app_scene_misc_on_enter(void* context) {
@@ -60,38 +49,45 @@ void xvirus_app_scene_misc_on_enter(void* context) {
     XvirusSettings* xvirus_settings = XVIRUS_SETTINGS();
     VariableItemList* var_item_list = app->var_item_list;
     VariableItem* item;
-
-    item = variable_item_list_add(
-        var_item_list, "Sort Dirs First", 2, xvirus_app_scene_misc_sort_dirs_first_changed, app);
-    variable_item_set_current_value_index(item, xvirus_settings->sort_dirs_first);
-    variable_item_set_current_value_text(item, xvirus_settings->sort_dirs_first ? "ON" : "OFF");
+    uint8_t value_index;
 
     variable_item_list_add(var_item_list, "Change Device Name", 0, NULL, app);
 
-       item = variable_item_list_add(
-        var_item_list, "RGB Backlight", 2, xvirus_app_scene_misc_rgb_backlight_changed, app);
-    variable_item_set_current_value_index(item, xvirus_settings->rgb_backlight);
+    char level_str[4];
+    snprintf(level_str, 4, "%li", app->xp_level);
+    item = variable_item_list_add(
+        var_item_list,
+        "XP Level",
+        DOLPHIN_LEVEL_COUNT + 1,
+        xvirus_app_scene_misc_xp_level_changed,
+        app);
+    variable_item_set_current_value_index(item, app->xp_level - 1);
+    variable_item_set_current_value_text(item, level_str);
+
+    item = variable_item_list_add(
+        var_item_list,
+        "Butthurt Timer",
+        COUNT_OF(butthurt_timer_names),
+        xvirus_app_scene_misc_butthurt_timer_changed,
+        app);
+    value_index = value_index_int32(
+        xvirus_settings->butthurt_timer, butthurt_timer_values, COUNT_OF(butthurt_timer_names));
+    variable_item_set_current_value_index(item, value_index);
+    variable_item_set_current_value_text(item, butthurt_timer_names[value_index]);
+
+    item = variable_item_list_add(var_item_list, "RGB Backlight", 1, NULL, app);
     variable_item_set_current_value_text(item, xvirus_settings->rgb_backlight ? "ON" : "OFF");
 
     item = variable_item_list_add(
-        var_item_list, "LCD Color", rgb_backlight_get_color_count(), xvirus_app_scene_misc_lcd_color_changed, app);
+        var_item_list,
+        "LCD Color",
+        rgb_backlight_get_color_count(),
+        xvirus_app_scene_misc_lcd_color_changed,
+        app);
     value_index = rgb_backlight_get_settings()->display_color_index;
     variable_item_set_current_value_index(item, value_index);
     variable_item_set_current_value_text(item, rgb_backlight_get_color_text(value_index));
     variable_item_set_locked(item, !xvirus_settings->rgb_backlight, "Needs RGB\nBacklight!");
-
-
-    variable_item_list_add(var_item_list, "      Experimental Options:", 0, NULL, app);
-
-    item = variable_item_list_add(
-        var_item_list, "Dark Mode", 2, xvirus_app_scene_misc_dark_mode_changed, app);
-    variable_item_set_current_value_index(item, xvirus_settings->dark_mode);
-    variable_item_set_current_value_text(item, xvirus_settings->dark_mode ? "ON" : "OFF");
-
-    item = variable_item_list_add(
-        var_item_list, "Left Handed", 2, xvirus_app_scene_misc_left_handed_changed, app);
-    variable_item_set_current_value_index(item, xvirus_settings->left_handed);
-    variable_item_set_current_value_text(item, xvirus_settings->left_handed ? "ON" : "OFF");
 
     variable_item_list_set_enter_callback(
         var_item_list, xvirus_app_scene_misc_var_item_list_callback, app);
@@ -113,6 +109,33 @@ bool xvirus_app_scene_misc_on_event(void* context, SceneManagerEvent event) {
         case VarItemListIndexChangeDeviceName:
             scene_manager_next_scene(app->scene_manager, XvirusAppSceneMiscRename);
             break;
+        case VarItemListIndexRgbBacklight: {
+            bool change = XVIRUS_SETTINGS()->rgb_backlight;
+            if(!change) {
+                DialogMessage* msg = dialog_message_alloc();
+                dialog_message_set_header(msg, "RGB Backlight", 64, 0, AlignCenter, AlignTop);
+                dialog_message_set_buttons(msg, "No", NULL, "Yes");
+                dialog_message_set_text(
+                    msg,
+                    "This option requires installing\na hardware modification!\nIs it installed?",
+                    64,
+                    32,
+                    AlignCenter,
+                    AlignCenter);
+                if(dialog_message_show(app->dialogs, msg) == DialogMessageButtonRight) {
+                    change = true;
+                }
+                dialog_message_free(msg);
+            }
+            if(change) {
+                XVIRUS_SETTINGS()->rgb_backlight = !XVIRUS_SETTINGS()->rgb_backlight;
+                app->save_settings = true;
+                notification_message(app->notification, &sequence_display_backlight_on);
+                scene_manager_previous_scene(app->scene_manager);
+                scene_manager_next_scene(app->scene_manager, XvirusAppSceneMisc);
+            }
+            break;
+        }
         default:
             break;
         }

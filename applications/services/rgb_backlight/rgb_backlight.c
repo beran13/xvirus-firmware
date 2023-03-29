@@ -1,14 +1,17 @@
 /*
     RGB backlight FlipperZero driver
     Copyright (C) 2022-2023 Victor Nikitchuk (https://github.com/quen0n)
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
@@ -18,8 +21,7 @@
 #include <storage/storage.h>
 
 #define RGB_BACKLIGHT_SETTINGS_VERSION 5
-#define RGB_BACKLIGHT_SETTINGS_FILE_NAME ".rgb_backlight.settings"
-#define RGB_BACKLIGHT_SETTINGS_PATH EXT_PATH(RGB_BACKLIGHT_SETTINGS_FILE_NAME)
+#define RGB_BACKLIGHT_SETTINGS_PATH CFG_PATH("rgb_backlight.settings")
 
 #define COLOR_COUNT (sizeof(colors) / sizeof(RGBBacklightColor))
 
@@ -31,7 +33,7 @@ static RGBBacklightSettings rgb_settings = {
     .settings_is_loaded = false};
 
 static const RGBBacklightColor colors[] = {
-    {"Orange", 255, 165, 0},
+    {"Orange", 255, 69, 0},
     {"Red", 255, 0, 0},
     {"Maroon", 128, 0, 0},
     {"Yellow", 255, 255, 0},
@@ -46,9 +48,9 @@ static const RGBBacklightColor colors[] = {
     {"Navy", 0, 0, 128},
     {"Purple", 128, 0, 128},
     {"Fuchsia", 255, 0, 255},
-    {"Pink", 255, 192, 203},
+    {"Pink", 173, 31, 173},
     {"Brown", 165, 42, 42},
-    {"White", 255, 255, 255},
+    {"White", 255, 192, 203},
 };
 
 uint8_t rgb_backlight_get_color_count(void) {

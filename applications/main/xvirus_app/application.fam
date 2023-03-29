@@ -1,7 +1,7 @@
 App(
     appid="xvirus_app",
-    name="Xvirus Settings",
-    apptype=FlipperAppType.EXTERNAL,
+    name="Xvirus",
+    apptype=FlipperAppType.EXTMAINAPP,
     entry_point="xvirus_app",
     cdefines=["APP_XVIRUS"],
     requires=[
@@ -10,7 +10,9 @@ App(
         "xvirus",
     ],
     stack_size=2 * 1024,
-    # icon="A_Xvirus_14",
+    icon="A_Xvirus_14",
     order=90,
+    fap_libs=["assets"],
     fap_category=".Main",
+    fap_icon="xvirus_app_10px.png",
 )

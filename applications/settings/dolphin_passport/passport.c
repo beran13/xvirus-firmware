@@ -42,24 +42,24 @@ static void render_callback(Canvas* canvas, void* _ctx) {
 
     if(XVIRUS_ASSETS()->is_nsfw) {
         if(stats->butthurt <= 4) {
-            portrait = xvirus_assets->I_passport_happy;
+            portrait = xvirus_assets->I_passport_happy_46x49;
             mood_str = "Status: Wet";
         } else if(stats->butthurt <= 9) {
-            portrait = xvirus_assets->I_passport_okay;
+            portrait = xvirus_assets->I_passport_okay_46x49;
             mood_str = "Status: Horny";
         } else {
-            portrait = xvirus_assets->I_passport_bad;
+            portrait = xvirus_assets->I_passport_bad_46x49;
             mood_str = "Status: Desperate";
         }
     } else {
         if(stats->butthurt <= 4) {
-            portrait = xvirus_assets->I_passport_happy;
+            portrait = xvirus_assets->I_passport_happy_46x49;
             mood_str = "Mood: Happy";
         } else if(stats->butthurt <= 9) {
-            portrait = xvirus_assets->I_passport_okay;
+            portrait = xvirus_assets->I_passport_okay_46x49;
             mood_str = "Mood: Okay";
         } else {
-            portrait = xvirus_assets->I_passport_bad;
+            portrait = xvirus_assets->I_passport_bad_46x49;
             mood_str = "Mood: Angry";
         }
     }

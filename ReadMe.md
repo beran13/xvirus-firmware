@@ -1,4 +1,4 @@
-# DEXV-Firmware
+# Dexvmaster0-Firmware
 
 [![Discord](https://img.shields.io/discord/975068703559409685?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/dexvirus)
 
@@ -19,12 +19,8 @@ cd dexvmaster0
 ```
 Finally build the package for the latest DEV build, be warned bugs may still be found:
 ```shell
-$ ./fbt updater_package
+./fbt updater_package
 ```
-
-# Read The Docs
-
-Check out details on [how to build firmware](documentation/fbt.md), [write applications](documentation/AppsOnSDCard.md), [un-brick your device](documentation/KeyCombo.md) and more in the `documentation` folder made by the Flipper team. 
 
 # Install Without Compiling
 
