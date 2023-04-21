@@ -7,6 +7,12 @@
 Welcome to [Dexv Zero](https://discord.gg/dexvirus)'s Firmware repo!
 My goal is to make a really nice flipper CFW, and to make it a pleasure for everyone to work with.
 
+# Donations: 
+**If you like what you're seeing, please consider donating to me. Even tho my fw may not be the best but i had some fun time learning stuff while working on it, but I'd still appreciate a few bucks**
+* https://ko-fi.com/dexv0\
+
+Thanks for all your support <3 | Also check out my [Discord](https://discord.gg/Dexvirus)
+
 # Build It Yourself
 
 First clone the repository: 
