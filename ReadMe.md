@@ -1,6 +1,6 @@
 # Dexvmaster0-Firmware
 
-[![Discord](https://img.shields.io/discord/975068703559409685?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/dexvirus)
+[![Discord](https://img.shields.io/discord/975068703559409685?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/sxrHZbUP6B)
 
 ![Show me the code](https://user-images.githubusercontent.com/89728480/209841676-33fb8152-d2ea-4039-a847-c03d1037fa3d.png)
 
@@ -12,7 +12,7 @@ My goal is to make a really nice flipper CFW, and to make it a pleasure for ever
 
 <a href='https://ko-fi.com/N4N7I2HJC' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/brandasset/kofi_button_dark.png' border='0' alt='Buy Me a Coff at ko-fi.com' /></a>
 
-Thanks for all your support <3 | Also check out my [Discord](https://discord.gg/Dexvirus)
+Thanks for all your support <3 | Also check out my [Discord](https://discord.gg/sxrHZbUP6B)
 
 # Build It Yourself
 
@@ -58,7 +58,7 @@ They must both be flashed in the order described.
 
 # Links
 
-* Discord: [dexvirus/discord](https://discord.gg/dexvirus)
+* Discord: [dexvirus/discord](https://discord.gg/sxrHZbUP6B)
 
 # Contact
 
