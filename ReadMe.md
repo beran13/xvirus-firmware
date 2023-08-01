@@ -1,4 +1,5 @@
-# Dexvmaster0-Firmware
+# PROJECT DEAD (Skidded) 
+## project dead cuz i suck at C!!!!!
 
 [![Discord](https://img.shields.io/discord/975068703559409685?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/sxrHZbUP6B)
 
