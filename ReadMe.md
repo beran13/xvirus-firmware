@@ -1,5 +1,5 @@
-# PROJECT DEAD (Skidded) 
-## project dead cuz i suck at C!!!!! and this is basically xtreme so go install https://flipper-xtre.me/
+# PROJECT DEAD ATM
+## will be back soon
 
 [![Discord](https://img.shields.io/discord/975068703559409685?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/sxrHZbUP6B)
 
