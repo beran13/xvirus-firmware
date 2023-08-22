@@ -19,11 +19,11 @@ Thanks for all your support <3 | Also check out my [Discord](https://discord.gg/
 
 First clone the repository: 
 ```shell
-git clone --recursive https://github.com/DXVVAY/dexvmaster0
+git clone --recursive https://github.com/DXVVAY/xvirus-firmware
 ```
 Then enter the directory:
 ```shell
-cd dexvmaster0
+cd xvirus-firmware
 ```
 Finally build the package for the latest DEV build, be warned bugs may still be found:
 ```shell
